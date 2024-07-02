@@ -14,33 +14,38 @@ const { banner, feature, services, workflow, call_to_action } = homepage.data;
   <section class="section pb-[50px]">
     <div class="container">
       <div class="row text-center">
-        <div class="mx-auto lg:col-10">
-          <h1 class="font-primary font-bold">{banner?.title}</h1>
-          {
-            banner?.content && (
-              <p class="mt-4" set:html={markdownify(banner.content)} />
-            )
-          }
+        <div class="mx-auto flex flex-wrap lg:flex-nowrap w-full">
+          <div class="content">
+            <h1 class="font-primary font-bold mt-4 md:w-5/6 md:mx-auto">
+              {banner?.title}
+            </h1>
+            {
+              banner?.content && (
+                <p class="mt-4" set:html={markdownify(banner.content)} />
+              )
+            }
 
-          {
-            banner?.button?.enable && (
-              <a class="btn btn-primary mt-4" href={banner.button.link}>
-                {banner.button.label}
-              </a>
-            )
-          }
-
-          {
-            banner?.image && (
-              <Image
-                class="mx-auto mt-12"
-                src={banner?.image}
-                width={750}
-                height={390}
-                alt="banner image"
-              />
-            )
-          }
+            {
+              banner?.button?.enable && (
+                <a class="btn btn-primary mt-4" href={banner.button.link}>
+                  {banner.button.label}
+                </a>
+              )
+            }
+          </div>
+          <div class="image w-full mt-12 sm:mt-24 lg:mt-0">
+            {
+              banner?.image && (
+                <Image
+                  class="mx-auto mt-4"
+                  src={banner?.image}
+                  width={750}
+                  height={390}
+                  alt="banner image"
+                />
+              )
+            }
+          </div>
         </div>
       </div>
     </div>
