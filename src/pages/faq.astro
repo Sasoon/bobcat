@@ -7,23 +7,46 @@ const entry = (await getEntryBySlug("faq", "index")) as TPostType;
 const { title, description, faqs } = entry.data;
 ---
 
+<script>
+  const faqItems = Array.from(document.querySelectorAll(".cs-faq-item"));
+  for (const item of faqItems) {
+    const onClick = () => {
+      item.classList.toggle("active");
+    };
+    item.addEventListener("click", onClick);
+  }
+</script>
 <Base title={title} description={description}>
   <section class="section">
     <div class="container">
-      <h1 class="text-center font-normal" set:html={markdownify(title)} />
+      <h1 class="text-center font-bold" set:html={markdownify(title)} />
       <div class="section row -mt-6">
-        {
-          faqs?.map((faq) => (
-            <div class="col-12 mt-6 md:col-6">
-              <div class="p-12  shadow">
-                <div class="faq-head relative">
-                  <h4 set:html={markdownify(faq.title)} />
-                </div>
-                <p class="faq-body mt-4" set:html={markdownify(faq.answer)} />
-              </div>
+        <section id="faq-1505">
+          <div class="cs-container">
+            <div class="cs-flex-group">
+              <ul class="cs-faq-group">
+                <!-- Active class added as default -->
+                {
+                  faqs?.map((faq) => (
+                    <li class="cs-faq-item">
+                      <button class="cs-button">
+                        <span
+                          set:html={markdownify(faq.title)}
+                          class="cs-button-text"
+                        />
+                        <span class="cs-indicator" aria-hidden="true" />
+                      </button>
+                      <p
+                        class="cs-item-p faq-body mt-4"
+                        set:html={markdownify(faq.answer)}
+                      />
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
-          ))
-        }
+          </div>
+        </section>
       </div>
     </div>
   </section>

@@ -54,7 +54,7 @@ const { main }: { main: NavigationLink[] } = menu;
 
     <ul
       id="nav-menu"
-      class="navbar-nav order-3 hidden w-full md:order-1 md:flex md:w-auto md:space-x-3"
+      class="navbar-nav order-3 hidden w-full md:order-1 md:flex md:w-auto md:space-x-12"
     >
       {
         main.map((menu) => (
@@ -83,11 +83,12 @@ const { main }: { main: NavigationLink[] } = menu;
                 </ul>
               </li>
             ) : (
-              <li class="nav-item">
+              <li class="nav-item w-auto group text-center">
                 <a
                   href={menu.url}
-                  class={`nav-link block ${
-                    pathname === menu.url && "nav-link-active"
+                  class={`nav-link block group-last:px-0 text-midnight-teal ${
+                    pathname === menu.url &&
+                    "nav-link-active text-tropical-teal"
                   }`}
                 >
                   {menu.name}
@@ -97,30 +98,6 @@ const { main }: { main: NavigationLink[] } = menu;
           </>
         ))
       }
-      {
-        nav_button.enable && (
-          <div class="block md:hidden">
-            <a
-              class="btn btn-primary z-0 ml-auto py-[14px]"
-              href={nav_button.link}
-            >
-              {nav_button.label}
-            </a>
-          </div>
-        )
-      }
     </ul>
-    {
-      nav_button.enable && (
-        <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 md:flex md:min-w-[150px] lg:min-w-[200px]">
-          <a
-            class="btn btn-primary z-0 ml-auto py-[14px]"
-            href={nav_button.link}
-          >
-            {nav_button.label}
-          </a>
-        </div>
-      )
-    }
   </nav>
 </header>

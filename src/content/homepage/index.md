@@ -2,7 +2,7 @@
 banner:
   title: LEAN, POWERFUL WEB DEVELOPMENT.
   content: Premium websites don't have to break the bank.
-  image: /images/banner-art.png
+  image: https://ucarecdn.com/1836492a-e9cc-4780-862e-c2828e85ead2/-/preview/1000x750/
   button:
     label: "Get In Touch"
     link: "/contact"
@@ -10,7 +10,7 @@ banner:
 
 # feature
 feature:
-  title: Something You Need To Know
+  title: Why Bobcat?
   features:
     - name: "Clean Code"
       icon: "/images/code.svg"

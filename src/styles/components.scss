@@ -19,10 +19,10 @@
   li {
     @apply inline-block;
     a {
-      @apply block h-9 w-9 rounded-full border border-primary text-center text-white transition hover:bg-primary;
+      @apply block h-9 w-9 rounded-full border border-tropical-teal text-center text-white transition hover:bg-tropical-teal;
 
       svg {
-        @apply m-auto h-9 fill-primary;
+        @apply m-auto h-9 fill-tropical-teal;
       }
 
       &:hover svg {
@@ -35,17 +35,17 @@
 // form style
 .form-input,
 .form-textarea {
-  @apply border-border py-[6px] focus:border-primary focus:ring-transparent;
+  @apply border-border py-[6px] focus:border-tropical-teal focus:ring-transparent;
 }
 
 // content style
 .content {
-  @apply prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h5:text-base prose-h6:mb-6 prose-h6:text-[15px] prose-a:no-underline hover:prose-a:text-primary prose-blockquote:border-primary prose-blockquote:py-1 prose-blockquote:px-4 prose-ol:pl-4 prose-ul:list-none prose-ul:pl-0 prose-hr:my-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3;
+  @apply prose max-w-none prose-headings:font-bold prose-h1:mb-4 prose-h1:text-h1-sm prose-h2:mb-4 prose-h2:mt-4 prose-h2:text-h2-sm prose-h3:mt-4 prose-h3:text-h3-sm prose-h4:mt-4 prose-h5:mb-4 prose-h5:text-base prose-h6:mb-6 prose-h6:text-[15px] prose-a:no-underline hover:prose-a:text-tropical-teal prose-blockquote:border-tropical-teal prose-blockquote:py-1 prose-blockquote:px-4 prose-ol:pl-4 prose-ul:list-none prose-ul:pl-0 prose-hr:my-5 md:prose-h1:text-h1 md:prose-h2:text-h2 md:prose-h3:text-h3;
 
   ul {
     @apply pl-2;
     li {
-      @apply relative list-none pl-5 before:absolute before:left-0 before:top-[10px] before:h-2 before:w-2 before:rounded-full before:bg-primary before:content-[''];
+      @apply relative list-none pl-5 before:absolute before:left-0 before:top-[10px] before:h-2 before:w-2 before:rounded-full before:bg-tropical-teal before:content-[''];
     }
   }
 }
@@ -60,9 +60,9 @@
   @apply flex justify-center;
 
   span {
-    @apply mx-[5px] inline-block h-[10px] w-[10px] cursor-pointer rounded-full border  border-primary;
+    @apply mx-[5px] inline-block h-[10px] w-[10px] cursor-pointer rounded-full border  border-tropical-teal;
     &.swiper-pagination-bullet-active {
-      @apply bg-primary;
+      @apply bg-tropical-teal;
     }
   }
 }
@@ -102,7 +102,7 @@
   }
   &-body {
     a {
-      @apply text-primary;
+      @apply text-tropical-teal;
     }
   }
 }
@@ -118,10 +118,10 @@
 .pagination {
   @apply space-x-2 text-center;
   .swiper-pagination-bullet {
-    @apply inline-block h-2.5 w-2.5 cursor-pointer rounded-full border border-primary;
+    @apply inline-block h-2.5 w-2.5 cursor-pointer rounded-full border border-tropical-teal;
 
     &-active {
-      @apply bg-primary;
+      @apply bg-tropical-teal;
     }
   }
 }
@@ -170,7 +170,7 @@
 .tab {
   @apply overflow-hidden rounded-lg border border-border;
   &-nav {
-    @apply flex border-b border-border bg-theme-light;
+    @apply flex border-b border-border bg-midnight-teal;
     @apply m-0 #{!important};
     @apply list-none #{!important};
 
@@ -203,7 +203,7 @@
 
 // accordion
 .accordion {
-  @apply mb-6 overflow-hidden rounded-lg border border-border bg-theme-light;
+  @apply mb-6 overflow-hidden rounded-lg border border-border bg-midnight-teal;
   &-header {
     @apply flex w-full cursor-pointer items-center justify-between px-8 py-4 text-lg text-dark;
   }
@@ -232,14 +232,360 @@
   @apply prose-h3:text-h3-sm md:prose-h3:text-h3;
   @apply prose-hr:border-border;
   @apply prose-p:text-base prose-p:text-text;
-  @apply prose-blockquote:rounded prose-blockquote:border-primary prose-blockquote:py-1 prose-blockquote:px-4;
-  @apply prose-code:px-1 prose-code:text-primary;
+  @apply prose-blockquote:rounded prose-blockquote:border-tropical-teal prose-blockquote:py-1 prose-blockquote:px-4;
+  @apply prose-code:px-1 prose-code:text-tropical-teal;
   @apply prose-pre:rounded;
   @apply prose-strong:text-dark;
-  @apply prose-a:text-primary prose-a:no-underline hover:prose-a:underline;
+  @apply prose-a:text-tropical-teal prose-a:no-underline hover:prose-a:underline;
   @apply prose-li:text-text;
   @apply prose-table:overflow-hidden prose-table:border prose-table:border-border;
-  @apply prose-thead:border-border prose-thead:bg-theme-light prose-th:py-4 prose-th:px-4 prose-th:text-dark;
+  @apply prose-thead:border-border prose-thead:bg-midnight-teal prose-th:py-4 prose-th:px-4 prose-th:text-dark;
   @apply prose-tr:border-border;
   @apply prose-td:px-3 prose-td:py-4;
+}
+
+// Codestitch
+/*-- -------------------------- -->
+<---            FAQ             -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+  #faq-1505 {
+    padding: var(--sectionPadding);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  #faq-1505 .cs-container {
+    width: 100%;
+    /* changes to 1280px at desktop */
+    max-width: 36.5rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 32px - 48px */
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+  #faq-1505 .cs-content {
+    /* set text align to left if content needs to be left aligned */
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* centers content horizontally, set to flex-start to left align */
+    align-items: center;
+  }
+  #faq-1505 .cs-title {
+    /* 32px - 48px */
+    margin: 0 0 clamp(2rem, 5vw, 3rem);
+  }
+  #faq-1505 .cs-card-group {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* changed at desktop */
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    /* 16px - 20px */
+    gap: clamp(1rem, 1.7vw, 1.25rem);
+  }
+  #faq-1505 .cs-item {
+    text-align: left;
+    list-style: none;
+    margin: 0;
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 2rem;
+  }
+  #faq-1505 .cs-number {
+    font-size: 3.0625rem;
+    line-height: 1.2em;
+    font-weight: 900;
+    color: var(--primary);
+    /* 8px - 72px */
+    margin: 0 0 clamp(0.5rem, 6vw, 4.5rem);
+    display: block;
+  }
+  #faq-1505 .cs-item-text {
+    font-size: 1rem;
+    line-height: 1.5em;
+    color: var(--bodyTextColor);
+    margin: 0;
+  }
+  #faq-1505 .cs-image-group {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 0 5.375rem 5.375rem;
+    z-index: 1;
+  }
+  #faq-1505 .cs-picture {
+    width: 100%;
+    /* 240px - 376px */
+    height: clamp(15rem, 46vw, 23.5rem);
+    display: block;
+    position: relative;
+  }
+  #faq-1505 .cs-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #faq-1505 .cs-mask {
+    --maskColor: #f2faf8;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    right: -1px;
+  }
+  #faq-1505 .cs-faq-group {
+    width: 100%;
+    max-width: 40.625rem;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  #faq-1505 .cs-faq-item {
+    list-style: none;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #e8e8e8;
+    /* 24px - 32px */
+    border-radius: clamp(1rem, 2.4vw, 2rem);
+    /* clips all corners of the button that overlap the rounded border */
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  #faq-1505 .cs-faq-item.active {
+    border-color: var(--secondary);
+  }
+  #faq-1505 .cs-faq-item.active .cs-button {
+    color: var(--secondary);
+  }
+  #faq-1505 .cs-faq-item.active .cs-button .cs-indicator:before {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  #faq-1505 .cs-faq-item.active .cs-button .cs-indicator:after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  #faq-1505 .cs-faq-item.active .cs-item-p {
+    height: auto;
+    /* 20px - 24px bottom */
+    /* 16px - 24px left & right */
+    padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(1.25rem, 1.3vw, 1.5rem);
+    opacity: 1;
+  }
+  #faq-1505 .cs-button {
+    font-size: 1.25rem;
+    line-height: 1.2em;
+    text-align: left;
+    font-weight: bold;
+    /* 16px - 24px */
+    padding: clamp(1rem, 2vw, 1.5rem);
+    background-color: #fff;
+    border: none;
+    color: var(--headerColor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 700px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+  #faq-1505 .cs-button:hover {
+    cursor: pointer;
+  }
+  #faq-1505 .cs-button .cs-indicator {
+    /* 40px - 48px */
+    width: clamp(2.5rem, 4vw, 3rem);
+    height: clamp(2.5rem, 4vw, 3rem);
+    background-color: #fff;
+    border: 1px solid #bababa;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+  }
+  #faq-1505 .cs-button .cs-indicator:before {
+    /* left line */
+    content: "";
+    width: 1rem;
+    height: 0.125rem;
+    background-color: #767676;
+    opacity: 1;
+    border-radius: 2px;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s;
+  }
+  #faq-1505 .cs-button .cs-indicator:after {
+    /* right line */
+    content: "";
+    width: 1rem;
+    height: 0.125rem;
+    background-color: #767676;
+    opacity: 1;
+    border-radius: 2px;
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transition: transform 0.5s;
+  }
+  #faq-1505 .cs-button-text {
+    width: 80%;
+    display: block;
+  }
+  #faq-1505 .cs-item-p {
+    /* 14px - 16px */
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    line-height: 1.5em;
+    width: 90%;
+    height: 0;
+    margin: 0;
+    /* 16px - 24px */
+    padding: 0 clamp(1rem, 2vw, 1.5rem);
+    opacity: 0;
+    color: var(--bodyTextColor);
+    /* clips the text so it doesn't show up */
+    overflow: hidden;
+    transition:
+      opacity 0.3s,
+      padding-bottom 0.3s;
+  }
+  #faq-1505 .cs-floater {
+    display: none;
+    position: absolute;
+  }
+  #faq-1505 .cs-floater1 {
+    width: 19.5rem;
+    height: auto;
+    margin-right: 43.75rem;
+    top: 9rem;
+    right: 50%;
+    transform: rotate(8deg);
+  }
+  #faq-1505 .cs-floater2 {
+    width: 12.9375rem;
+    height: auto;
+    margin-left: 52.5rem;
+    top: 20.625rem;
+    left: 50%;
+    transform: rotate(8deg);
+  }
+  #faq-1505 .cs-top {
+    width: 100%;
+    min-width: 120rem;
+    height: auto;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #faq-1505 .cs-bottom {
+    width: 100%;
+    min-width: 120rem;
+    height: auto;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+  #faq-1505 .cs-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  #faq-1505 .cs-content {
+    max-height: 38.5rem;
+    width: 40%;
+    text-align: left;
+    align-items: flex-start;
+    /* prevents flexbox from squishing it */
+    flex: none;
+    /* sends it to the right in the 2nd position */
+    order: 2;
+  }
+  #faq-1505 .cs-card-group {
+    /* pushes up against the other flex items so it pushes to the bottom of the flexbox */
+    margin-top: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+  #faq-1505 .cs-item {
+    grid-column: span 1;
+  }
+}
+/* Larger Desktop - 1600px */
+@media only screen and (min-width: 100rem) {
+  #faq-1505 .cs-floater {
+    display: block;
+  }
+}
+/* Dark Mode */
+@media only screen and (min-width: 0rem) {
+  body.dark-mode #faq-1505 {
+    background-color: #061a28;
+  }
+  body.dark-mode #faq-1505 .cs-title,
+  body.dark-mode #faq-1505 .cs-item-p {
+    color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #faq-1505 .cs-item {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  body.dark-mode #faq-1505 .cs-number {
+    color: var(--secondary);
+  }
+  body.dark-mode #faq-1505 .cs-mask {
+    --maskColor: #061a28;
+  }
+  body.dark-mode #faq-1505 .cs-item-text {
+    color: var(--bodyTextColorWhite);
+    opacity: 0.8;
+  }
+  body.dark-mode #faq-1505 .cs-faq-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  body.dark-mode #faq-1505 .cs-faq-item.active .cs-button:before,
+  body.dark-mode #faq-1505 .cs-faq-item.active .cs-button:after {
+    background-color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #faq-1505 .cs-button {
+    background-color: transparent;
+    color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #faq-1505 .cs-button:before,
+  body.dark-mode #faq-1505 .cs-button:after {
+    background-color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #faq-1505 .cs-indicator {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  body.dark-mode #faq-1505 .cs-indicator:before,
+  body.dark-mode #faq-1505 .cs-indicator:after {
+    background-color: var(--bodyTextColorWhite);
+  }
+  body.dark-mode #faq-1505 .cs-top path,
+  body.dark-mode #faq-1505 .cs-bottom path {
+    fill: var(--dark);
+  }
 }

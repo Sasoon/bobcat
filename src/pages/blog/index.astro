@@ -14,7 +14,7 @@ const { blog_folder, summary_length } = config.settings;
 
 const postIndex = (await getEntryBySlug<any, string>(
   blog_folder,
-  "index",
+  "index"
 )) as TIndexData;
 const posts = await getSinglePage(blog_folder as any);
 const sortedPosts = sortByDate(posts);
@@ -26,7 +26,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
   <section class="section">
     <div class="container">
       <h1
-        class="text-center font-normal lg:text-[56px]"
+        class="text-center font-bold lg:text-[56px]"
         set:html={markdownify(postIndex?.data.title)}
       />
       <div class="row pb-12">
@@ -48,7 +48,7 @@ const currentPosts = sortedPosts.slice(0, config.settings.pagination);
             <h2 class="h3 mb-2 mt-4">
               <a
                 href={`/${blog_folder}/${currentPosts[0].slug}`}
-                class="block hover:text-primary"
+                class="block hover:text-tropical-teal"
               >
                 {currentPosts[0].data.title}
               </a>

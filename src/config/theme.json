@@ -2,20 +2,20 @@
   "colors": {
     "default": {
       "theme_color": {
-        "primary": "#0aa8a7",
+        "tropical_teal": "#2a9d8f",
         "body": "#fff",
         "border": "#e9e9e9",
-        "theme_light": "#edf6f5"
+        "midnight_teal": "#264653"
       },
       "text_color": {
         "default": "#555",
-        "dark": "#222"
+        "dark": "#fff"
       }
     }
   },
   "fonts": {
     "font_family": {
-      "primary": "Lato:wght@300;400;700",
+      "primary": "Montserrat:wght@300;400;700",
       "primary_type": "sans-serif"
     },
     "font_size": {

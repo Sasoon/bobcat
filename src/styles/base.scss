@@ -4,6 +4,9 @@ html {
 
 body {
   @apply bg-body font-primary font-normal leading-relaxed text-text;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3E%3Cdefs%3E%3CradialGradient id='complexWarmCool' cx='30%25' cy='70%25' r='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23e6d0b5%3Bstop-opacity:1' /%3E%3Cstop offset='40%25' style='stop-color:%23d1c3b6%3Bstop-opacity:1' /%3E%3Cstop offset='70%25' style='stop-color:%23b8c5d1%3Bstop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23a0b5cc%3Bstop-opacity:1' /%3E%3C/radialGradient%3E%3Cfilter id='sparseGrain' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.3' numOctaves='3' seed='5' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix in='noise' type='matrix' values='1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.05 0' result='coloredNoise'/%3E%3CfeComposite operator='in' in='coloredNoise' in2='SourceGraphic' result='grainMask'/%3E%3CfeBlend mode='soft-light' in='SourceGraphic' in2='grainMask' result='subtleGrain'/%3E%3C/filter%3E%3C/defs%3E%3Crect x='0' y='0' width='1000' height='1000' fill='url(%23complexWarmCool)' filter='url(%23sparseGrain)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1,

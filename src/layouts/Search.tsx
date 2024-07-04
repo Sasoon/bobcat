@@ -107,7 +107,7 @@ export default function SearchBar({ searchList }: Props) {
                   <a
                     key={author}
                     href={`/authors/${slugify(author)}`}
-                    className="flex items-center hover:text-primary"
+                    className="flex items-center hover:text-tropical-teal"
                   >
                     {author}
                   </a>
@@ -120,7 +120,7 @@ export default function SearchBar({ searchList }: Props) {
                     <li className="inline-block" key={category}>
                       <a
                         href={`/categories/${slugify(category)}`}
-                        className="mr-3 hover:text-primary"
+                        className="mr-3 hover:text-tropical-teal"
                       >
                         &#9635; {humanize(category)}
                       </a>
@@ -130,7 +130,10 @@ export default function SearchBar({ searchList }: Props) {
               </li>
             </ul>
             <h3 className="mb-2">
-              <a href={`/${item.slug}`} className="block hover:text-primary">
+              <a
+                href={`/${item.slug}`}
+                className="block hover:text-tropical-teal"
+              >
                 {item.data.title}
               </a>
             </h3>
