@@ -109,9 +109,6 @@ const { main }: { main: NavigationLink[] } = menu;
   const header = document.getElementById("main-header");
   const scrollThreshold = 5;
 
-  // Add the border-bottom by default
-  header.classList.add("shadow-header");
-
   window.addEventListener("scroll", () => {
     if (window.scrollY > scrollThreshold) {
       header.classList.add("py-0", "shadow-header");
