@@ -9,6 +9,10 @@
       "url": "/blog"
     },
     {
+      "name": "About",
+      "url": "/about"
+    },    
+    {
       "name": "Pricing",
       "url": "/pricing"
     },

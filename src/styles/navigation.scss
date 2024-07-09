@@ -19,7 +19,7 @@
 
 // navbar items
 .navbar {
-  @apply relative flex flex-wrap items-center justify-between;
+  @apply relative flex flex-wrap justify-between;
 }
 
 .navbar-brand {
@@ -52,7 +52,8 @@
   &-active:after {
     content: "";
     display: block;
-    width: 50%; /* Adjust the width to be half of the anchor */
+    margin: 0 auto;
+    width: 1em; /* Adjust the width to be half of the anchor */
     padding-top: 2px; /* Adjust the thickness of the border */
     border-bottom: 2px solid; /* Adjust the thickness and style of the border */
   }

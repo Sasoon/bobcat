@@ -589,3 +589,230 @@
     fill: var(--dark);
   }
 }
+
+
+/*-- -------------------------- -->
+<---          Services          -->
+<--- -------------------------- -*/
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #services-502 {
+        margin: var(--sectionPadding);
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 1rem;
+        /* prevents overflow from the slant shape */
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+    }
+    #services-502:before {
+        /* section background */
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: var(--primary);
+        opacity: 1;
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    #services-502 .cs-container {
+        width: 100%;
+        max-width: 80rem;
+        margin: auto;
+        /* 60px - 80px top and bottom */
+        padding: clamp(3.75em, 6.82vw, 5em) 0;
+        /* maintains proportional margin top as screen size grows */
+        margin-top: 56vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        /* 40px - 70px */
+        gap: clamp(2.5rem, 5.7vw, 4.375rem);
+        position: relative;
+        /* places it on top of the cs-background */
+        z-index: 10;
+    }
+    #services-502 .cs-container:before {
+        /* section slant on mobile */
+        content: "";
+        width: 62.5rem;
+        height: 125rem;
+        background: var(--primary);
+        opacity: 1;
+        position: absolute;
+        z-index: -1;
+        display: block;
+        top: -28.75rem;
+        /* these last two center it horizontally and rotate -65deg */
+        left: 50%;
+        transform: translateX(-50%) rotate(-65deg);
+    }
+    #services-502 .cs-background {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #services-502 .cs-background img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    #services-502 .cs-content {
+        width: 100%;
+    }
+
+    #services-502 .cs-topper {
+        color: var(--bodyTextColorWhite);
+    }
+    #services-502 .cs-title {
+        /* changes to 45% at tablet */
+        width: 95%;
+        max-width: 32.125rem;
+        color: var(--bodyTextColorWhite);
+    }
+    #services-502 .cs-card-group {
+        width: 100%;
+        max-width: 35.25rem;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* 20px - 32px */
+        gap: clamp(1.25rem, 3vw, 2rem);
+    }
+    #services-502 .cs-item {
+        list-style: none;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        /* 32px - 64px */
+        gap: clamp(2rem, 5vw, 4rem);
+    }
+    #services-502 .cs-icon {
+        width: 3.75rem;
+        height: auto;
+        display: block;
+    }
+    #services-502 .cs-h3 {
+        /* 25px - 31px */
+        font-size: clamp(1.5625rem, 3vw, 1.9375rem);
+        line-height: 1.2em;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0 0 1.25rem 0;
+        color: var(--bodyTextColorWhite);
+    }
+    #services-502 .cs-item-text {
+        /* 16px - 20px */
+        font-size: clamp(1rem, 1rem, 1.25rem);
+        line-height: 1.5em;
+        text-align: left;
+        margin: 0;
+        color: var(--bodyTextColorWhite);
+    }
+    #services-502 .cs-button-solid {
+        font-size: 1rem;
+        /* 46px - 56px */
+        line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+        text-decoration: none;
+        font-weight: 700;
+        text-align: center;
+        margin: 0;
+        color: #000;
+        min-width: 9.375rem;
+        padding: 0 1.5rem;
+        background-color: var(--secondary);
+        border-radius: 0.25rem;
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        /* prevents padding from adding to the width */
+        box-sizing: border-box;
+    }
+    #services-502 .cs-button-solid:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 0%;
+        background: #fff;
+        opacity: 1;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 0.25rem;
+        transition: width 0.3s;
+    }
+    #services-502 .cs-button-solid:hover:before {
+        width: 100%;
+    }
+}
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #services-502:before {
+        /* remove the pseudo for the section background */
+        display: none;
+    }
+    #services-502 .cs-background {
+        /* reset height to let top and bottom properties create the height */
+        height: auto;
+        aspect-ratio: initial;
+        position: absolute;
+        /* creates the gap between the image and the blue section */
+        top: 3.75rem;
+        bottom: 0;
+    }
+    #services-502 .cs-background img {
+        width: 60%;
+        left: auto;
+        right: 0;
+        object-position: 80% top;
+    }
+    #services-502 .cs-container {
+        margin-top: 0;
+    }
+    #services-502 .cs-container:before {
+        /* make really tall so it always covers top to bottom, even when you add more list items */
+        height: 250rem;
+        /* make really really wide so it covers the left side at large scree sizes */
+        width: 250rem;
+        /* push X amount from the center line to the right.  If after you added content and the slant is not covering everything, make this negative number even more negative to pull it more to the right */
+        margin-right: -68.75rem;
+        /* prevents the mouse from interacting with it */
+        pointer-events: none;
+        top: 50%;
+        left: auto;
+        /* pushes the right edge of the element to the center line of the parent */
+        right: 50%;
+        transform: rotate(-35deg) translateY(-50%);
+    }
+    #services-502 .cs-title {
+        width: 45%;
+    }
+    #services-502 .cs-card-group {
+        width: 52%;
+        /* 24px - 32px */
+        padding-left: clamp(1.5rem, 3vw, 2rem);
+        /* prevents padding from adding to width */
+        box-sizing: border-box;
+    }
+    #services-502 .cs-item {
+        flex-direction: row;
+    }
+}

@@ -7,7 +7,6 @@ banner:
     label: "Get In Touch"
     link: "/contact"
     enable: true
-
 # feature
 feature:
   title: Why Bobcat?
@@ -33,7 +32,7 @@ feature:
 
 # services
 services:
-  - title: "It is the most advanced digital marketing and it company."
+  - title: "Peace of mind dealing with an expert"
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat. consectetur adipiscing elit. Consequat tristique eget amet, tempus eu at consecttur. Leo facilisi nunc viverra tellus. Ac laoreet sit vel consquat."
     images:
       - "/images/service-slide-1.png"

@@ -24,16 +24,13 @@ const { title, description, plans, call_to_action } = entry.data;
                 <div class="mt-5">
                   <div>
                     <span class="text-5xl text-text">
-                      {!plan.recommended ? "$3,500" : "$0"}
+                      {!plan.recommended ? "$3,500" : ""}
                     </span>
-                    <span>upfront</span>
+                    <span>{!plan.recommended ? "upfront" : ""}</span>
                   </div>
 
                   <span class="text-5xl text-text">${plan.price}</span>
-                  <span>
-                    {!plan.recommended ? "" : "/"}
-                    {plan.type}
-                  </span>
+                  <span>{plan.type}</span>
                 </div>
                 <h5 class="mt-2 font-normal text-text">{plan.subtitle}</h5>
                 <ul class="mt-5">

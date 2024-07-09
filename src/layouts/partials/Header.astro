@@ -20,8 +20,11 @@ export interface NavigationLink {
 const { main }: { main: NavigationLink[] } = menu;
 ---
 
-<header class="header">
-  <nav class="navbar container">
+<header
+  id="main-header"
+  class="header bg-white flex flex-start py-4 transition-all duration-300 fixed top-0 left-0 right-0 z-50"
+>
+  <nav class="navbar container flex items-center">
     <!-- logo -->
     <div class="order-0">
       <Logo />
@@ -54,7 +57,7 @@ const { main }: { main: NavigationLink[] } = menu;
 
     <ul
       id="nav-menu"
-      class="navbar-nav order-3 hidden w-full md:order-1 md:flex md:w-auto md:space-x-12"
+      class="navbar-nav order-3 hidden w-full md:order-1 md:flex md:w-auto md:space-x-6"
     >
       {
         main.map((menu) => (
@@ -86,7 +89,7 @@ const { main }: { main: NavigationLink[] } = menu;
               <li class="nav-item w-auto group text-center">
                 <a
                   href={menu.url}
-                  class={`nav-link block group-last:px-0 text-midnight-teal ${
+                  class={`nav-link block group-last:px-0 text-midnight-teal font-medium ${
                     pathname === menu.url &&
                     "nav-link-active text-tropical-teal"
                   }`}
@@ -101,3 +104,27 @@ const { main }: { main: NavigationLink[] } = menu;
     </ul>
   </nav>
 </header>
+
+<script>
+  const header = document.getElementById("main-header");
+  const scrollThreshold = 5;
+
+  // Add the border-bottom by default
+  header.classList.add("shadow-header");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add("py-0", "shadow-header");
+      header.classList.remove("py-4");
+    } else {
+      header.classList.remove("py-0", "shadow-header");
+      header.classList.add("py-4");
+    }
+  });
+</script>
+
+<style>
+  .shadow-header {
+    box-shadow: 0 15px 11px 1px rgba(0,0,0,.2);
+  }
+</style>

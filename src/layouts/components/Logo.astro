@@ -17,13 +17,14 @@ const {
 } = config.site;
 ---
 
-<a href="/" class="navbar-brand block md:w-[130px] lg:w-auto">
+<a href="/" class="navbar-brand block w-auto">
   {
     src || logo ? (
       <Image
         width={logo_width.replace("px", "") * 2}
         height={logo_height.replace("px", "") * 2}
         src={src ? src : logo}
+        id="logo"
         alt={title}
         style={{
           height: logo_height.replace("px", "") + "px",
@@ -37,3 +38,22 @@ const {
     )
   }
 </a>
+
+<script>
+  const logo = document.getElementById("logo");
+  const scrollThreshold = 5; // Adjust this value as needed
+
+  function updateHeader() {
+    if (window.scrollY > scrollThreshold) {
+      logo.style.transition = "transform 0.2s ease";
+      logo.style.transform = "scale(0.9)";
+    } else {
+      logo.style.transition = "transform 0.2s ease";
+      logo.style.transform = "scale(1)";
+    }
+  }
+
+  window.addEventListener("scroll", updateHeader);
+  // Run once on load to set initial state
+  updateHeader();
+</script>
