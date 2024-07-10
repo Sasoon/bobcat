@@ -1,0 +1,71 @@
+---
+interface Props {
+  uuid: string;
+  alt: string;
+  sizes?: string;
+  breakpoints?: number[];
+  className?: string;
+  aspectRatio?: number;
+}
+
+const { 
+  uuid, 
+  alt, 
+  sizes = "sm:100vw md:50vw lg:33vw",
+  breakpoints = [640, 768, 1024, 1280, 1536],
+  className = "",
+  aspectRatio = 16/9 // default aspect ratio
+} = Astro.props;
+
+const baseUrl = `https://ucarecdn.com/${uuid}/`;
+
+function generateSrcSet(breakpoints: number[], aspectRatio: number): string {
+  return breakpoints
+    .map(width => {
+      const height = Math.round(width / aspectRatio);
+      return `${baseUrl}-/scale_crop/${width}x${height}/center/-/format/auto/-/quality/smart/ ${width}w`;
+    })
+    .join(', ');
+}
+
+function parseTailwindSizes(sizes: string): string {
+  const breakpointMap = {
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+    '2xl': 1536
+  };
+  
+  const parts = sizes.split(' ').reverse();
+  let result = [];
+  
+  for (let part of parts) {
+    const [breakpoint, size] = part.split(':');
+    if (breakpointMap[breakpoint]) {
+      result.push(`(min-width: ${breakpointMap[breakpoint]}px) ${size}`);
+    } else {
+      result.push(size);
+    }
+  }
+  
+  return result.join(', ');
+}
+
+const srcset = generateSrcSet(breakpoints, aspectRatio);
+const parsedSizes = parseTailwindSizes(sizes);
+const largestBreakpoint = breakpoints[breakpoints.length - 1];
+const largestHeight = Math.round(largestBreakpoint / aspectRatio);
+---
+
+<picture class="cs-picture bg-tropical-teal">
+<img 
+  src={`${baseUrl}-/scale_crop/${largestBreakpoint}x${largestHeight}/center/-/format/auto/-/quality/smart/`} 
+  srcset={srcset}
+  sizes={parsedSizes}
+  alt={alt}
+  loading="lazy"
+  decoding="async"
+  class={className}
+/>
+</picture>

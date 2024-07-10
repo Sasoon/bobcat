@@ -9,54 +9,16 @@ import Base from "@/layouts/Base.astro";
         <picture class="cs-picture">
             <source media="(max-width: 600px)" srcset="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/">
             <source media="(min-width: 601px)" srcset="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/">
-            <img loading="lazy" decoding="async" src="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/" alt="consult" width="520" height="680" aria-hidden="true">
+            <img loading="lazy" decoding="async" src="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/gst" alt="consult" width="520" height="680" aria-hidden="true">
         </picture>
         <!-- Right Content Section-->
         <div class="cs-content">
-            <span class="cs-topper">Best Experience</span>
-            <h2 class="cs-title">Find Us What We Actually Do For Giving Complete Solutions.</h2>
+            <span class="cs-topper">founder & lead developer</span>
+            <h2 class="cs-title font-secondary">Hey, I'm Sas!</h2>
             <p class="cs-text">
-                In consequat tincidunt turpis sit amet imperdiet. Praesent Class officelan nonatoureanor mauris laoreet, iaculis libero quis. Curabitur et tempus eri consequat tincidunt turpis sit amet imperdiet. Praesent nonatourean olei aptent taciti sociosqu ad litora torquent per.
+               I've been working as a developer for just shy of a decade in all kinds of industries and capacities. Now I'm turning my sights back to freelancing with Bobcat, a one man shop dedicated to helping small businesses grow their online presence.
             </p>
             <a class="cs-button-solid" aria-label="learn more about our programs" href="">Learn More</a>
-
-            <!--SVG Circles-->
-            <div class="cs-circles">
-                <div class="cs-circle">
-                    <!--Wrapped in a div so mobile positioning is easier-->
-                    <div class="cs-ring-wrapper">
-                        <span class="cs-number">90%</span>
-                        <!--Change the --ratio to the decimal percentage of this circle-->
-                        <svg class="cs-ring" style="--ratio: 0.90">
-                            <circle cx="50%" cy="50%" r="50%"/>
-                            <circle cx="50%" cy="50%" r="50%"/>
-                        </svg>
-                    </div>
-                    <span class="cs-desc">Case Win</span>
-                </div>
-                <div class="cs-circle">
-                    <div class="cs-ring-wrapper">
-                        <span class="cs-number">75%</span>
-                        <!--Change the --ratio to the decimal percentage of this circle-->
-                        <svg class="cs-ring" style="--ratio: 0.75">
-                            <circle cx="50%" cy="50%" r="50%"/>
-                            <circle cx="50%" cy="50%" r="50%"/>
-                        </svg>
-                    </div>
-                    <span class="cs-desc">Settle</span>
-                </div>
-                <div class="cs-circle">
-                    <div class="cs-ring-wrapper">
-                        <span class="cs-number">30%</span>
-                        <!--Change the --ratio to the decimal percentage of this circle-->
-                        <svg class="cs-ring" style="--ratio: 0.30">
-                            <circle cx="50%" cy="50%" r="50%"/>
-                            <circle cx="50%" cy="50%" r="50%"/>
-                        </svg>
-                    </div>
-                    <span class="cs-desc">Case Pending</span>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -144,28 +106,6 @@ import Base from "@/layouts/Base.astro";
             }
         }
 
-        .cs-circles {
-            width: 100%;
-            /* changes at desktop */
-            max-width: calc(374 / 16 * 1rem);
-            margin: auto;
-            /* 40px - 48px */
-            margin-top: clamp(2.5rem, 3vw, 3rem);
-            display: flex;
-            align-items: flex-start;
-            gap: calc(20 / 16 * 1rem);
-        }
-
-        .cs-circle {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            flex: 1;
-            aspect-ratio: 1;
-        }
-
         .cs-ring-wrapper {
             position: relative;
             margin: 0 0 calc(8 / 16 * 1rem) 0;
@@ -217,10 +157,6 @@ import Base from "@/layouts/Base.astro";
             stroke-dasharray: calc(var(--ratio) * 314%) 314%;
 
             transition: stroke-dasharray 1s;
-        }
-
-        .cs-circle:hover .cs-ring {
-            --ratio: 0 !important;
         }
 
         .cs-picture {
@@ -283,12 +219,6 @@ import Base from "@/layouts/Base.astro";
                 calc(80 / 16 * 1em);
             /* prevent flexbox from squishing it */
             flex: none;
-        }
-
-        .cs-circles {
-            max-width: 100%;
-            margin-left: 0;
-            margin-right: 0;
         }
 
         .cs-ring-wrapper {

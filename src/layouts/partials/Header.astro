@@ -22,7 +22,7 @@ const { main }: { main: NavigationLink[] } = menu;
 
 <header
   id="main-header"
-  class="header bg-white flex flex-start py-4 transition-all duration-300 fixed top-0 left-0 right-0 z-50"
+  class="header bg-white flex flex-start py-4 transition-all duration-300 fixed top-0 left-0 right-0 z-10"
 >
   <nav class="navbar container flex items-center">
     <!-- logo -->
@@ -106,18 +106,30 @@ const { main }: { main: NavigationLink[] } = menu;
 </header>
 
 <script>
-  const header = document.getElementById("main-header");
-  const scrollThreshold = 5;
+  function setupHeaderScroll() {
+    const header = document.getElementById("main-header");
+    const scrollThreshold = 5;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > scrollThreshold) {
-      header.classList.add("py-0", "shadow-header");
-      header.classList.remove("py-4");
-    } else {
-      header.classList.remove("py-0", "shadow-header");
-      header.classList.add("py-4");
+    function handleScroll() {
+      if (window.scrollY > scrollThreshold) {
+        header.classList.add("py-0", "shadow-header");
+        header.classList.remove("py-4");
+      } else {
+        header.classList.remove("py-0", "shadow-header");
+        header.classList.add("py-4");
+      }
     }
-  });
+
+    window.addEventListener("scroll", handleScroll);
+    // Initial check in case the page is already scrolled
+    handleScroll();
+  }
+
+  // Run on initial page load
+  setupHeaderScroll();
+
+  // Run on subsequent navigations
+  document.addEventListener('astro:page-load', setupHeaderScroll);
 </script>
 
 <style>

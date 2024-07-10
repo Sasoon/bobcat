@@ -27,6 +27,7 @@ const { banner, feature, services, call_to_action } = homepage.data;
     height: 120%; /* Slightly taller than the container */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1145%26quot%3b)' fill='none'%3e%3cpath d='M1157.528120287476 196.74871924554995L1277.1257010403258 293.5969305479583 1254.3763315898843 77.15113849270006z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M964.6946303153553 176.64718914641043L964.6946303153553 266.17093282895814 1054.218373997903 266.17093282895814 1054.218373997903 176.6471891464104z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M248.90002296232262 238.6850634221973L106.72943557087265 296.12570927073216 164.1700814194075 438.2962966621821 306.3406688108575 380.85565081364723z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M57.039002873229194 429.5631247508709L-4.847218325192685 352.9909106704393-37.087495557135824 432.78839699771845z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1208.9452303167786 411.0612881754855L1258.9330914679147 518.5278779374147 1319.8325256086237 434.7069978192181z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M308.063752033158 92.95865585438374L216.72898034476725 7.787603366020392 131.5579278564039 99.12237505441114 222.89269954479465 184.29342754277448z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1205.347350116711 207.006669730669L1259.916343644937 112.49040042188449 1165.4000743361523 57.92140689365857 1110.8310808079264 152.43767620244307z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M546.4672387286942 214.91067844925902L458.3738946264026 120.44213267252422 363.9053488496678 208.53547677481575 451.99869295195936 303.0040225515505z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1145'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
     background-size: cover;
+    background-position: 0 2em;
     transform: translateY(0);
     will-change: transform;
   }
@@ -52,7 +53,7 @@ const { banner, feature, services, call_to_action } = homepage.data;
             </h1>
             {
               banner?.content && (
-                <p class="mt-4" set:html={markdownify(banner.content)} />
+                <p class="mt-4 border-b border-midnight-teal w-fit" set:html={markdownify(banner.content)} />
               )
             }
 
@@ -223,9 +224,11 @@ const { banner, feature, services, call_to_action } = homepage.data;
   document.addEventListener("astro:page-load", () => {
     const parallaxBg = document.querySelector(".parallax-bg");
 
-    window.addEventListener("scroll", () => {
-      const scrollPosition = window.pageYOffset;
-      parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-    });
+    if (parallaxBg) {
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.pageYOffset;
+        parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+      });
+    }
   });
 </script>
