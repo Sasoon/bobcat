@@ -5,10 +5,6 @@
       "url": "/"
     },
     {
-      "name": "Blog",
-      "url": "/blog"
-    },
-    {
       "name": "About",
       "url": "/about"
     },    
@@ -27,15 +23,27 @@
   ],
   "footer": [
     {
-      "name": "Company",
+      "name": "Menu",
       "menu": [
+        {
+          "text": "Home",
+          "url": "/"
+        },
+        {
+          "text": "About",
+          "url": "/about"
+        },
         {
           "text": "Pricing",
           "url": "/pricing"
         },
         {
-          "text": "Quick Start",
-          "url": "#"
+          "text": "Contact",
+          "url": "/contact"
+        },
+        {
+          "text": "FAQ",
+          "url": "/faq"
         }
       ]
     },

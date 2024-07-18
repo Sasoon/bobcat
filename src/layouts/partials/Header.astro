@@ -76,7 +76,8 @@ const { main }: { main: NavigationLink[] } = menu;
                       <a
                         href={child.url}
                         class={`nav-dropdown-link block ${
-                          pathname === child.url && "nav-link-active"
+                          pathname === child.url &&
+                          "nav-link-active text-purple-600"
                         }`}
                       >
                         {child.name}
@@ -90,8 +91,7 @@ const { main }: { main: NavigationLink[] } = menu;
                 <a
                   href={menu.url}
                   class={`nav-link block group-last:px-0 text-midnight-teal font-medium ${
-                    pathname === menu.url &&
-                    "nav-link-active text-tropical-teal"
+                    pathname === menu.url && "nav-link-active  text-purple-600"
                   }`}
                 >
                   {menu.name}
@@ -129,11 +129,11 @@ const { main }: { main: NavigationLink[] } = menu;
   setupHeaderScroll();
 
   // Run on subsequent navigations
-  document.addEventListener('astro:page-load', setupHeaderScroll);
+  document.addEventListener("astro:page-load", setupHeaderScroll);
 </script>
 
 <style>
   .shadow-header {
-    box-shadow: 0 15px 11px 1px rgba(0,0,0,.2);
+    box-shadow: 0 15px 11px 1px rgba(0, 0, 0, 0.2);
   }
 </style>

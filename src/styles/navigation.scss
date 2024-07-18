@@ -47,7 +47,7 @@
 }
 
 .nav-link {
-  @apply py-3 px-2 font-primary font-bold transition hover:text-tropical-teal md:py-4 lg:px-3;
+  @apply py-3 px-2 font-primary font-bold transition hover:text-purple-600 md:py-4 lg:px-3;
 
   &-active:after {
     content: "";
@@ -55,6 +55,6 @@
     margin: 0 auto;
     width: 1em; /* Adjust the width to be half of the anchor */
     padding-top: 2px; /* Adjust the thickness of the border */
-    border-bottom: 2px solid; /* Adjust the thickness and style of the border */
+    border-bottom: 2px solid #a855f7; /* Adjust the thickness and style of the border */
   }
 }

@@ -8,24 +8,24 @@ interface Props {
   aspectRatio?: number;
 }
 
-const { 
-  uuid, 
-  alt, 
+const {
+  uuid,
+  alt,
   sizes = "sm:100vw md:50vw lg:33vw",
   breakpoints = [640, 768, 1024, 1280, 1536],
   className = "",
-  aspectRatio = 16/9 // default aspect ratio
+  aspectRatio = 16 / 9, // default aspect ratio
 } = Astro.props;
 
 const baseUrl = `https://ucarecdn.com/${uuid}/`;
 
 function generateSrcSet(breakpoints: number[], aspectRatio: number): string {
   return breakpoints
-    .map(width => {
+    .map((width) => {
       const height = Math.round(width / aspectRatio);
-      return `${baseUrl}-/scale_crop/${width}x${height}/center/-/format/auto/-/quality/smart/ ${width}w`;
+      return `${baseUrl}-/scale_crop/${width}x${height}/-/format/auto/-/quality/smart/ ${width}w`;
     })
-    .join(', ');
+    .join(", ");
 }
 
 function parseTailwindSizes(sizes: string): string {
@@ -34,22 +34,22 @@ function parseTailwindSizes(sizes: string): string {
     md: 768,
     lg: 1024,
     xl: 1280,
-    '2xl': 1536
+    "2xl": 1536,
   };
-  
-  const parts = sizes.split(' ').reverse();
+
+  const parts = sizes.split(" ").reverse();
   let result = [];
-  
+
   for (let part of parts) {
-    const [breakpoint, size] = part.split(':');
+    const [breakpoint, size] = part.split(":");
     if (breakpointMap[breakpoint]) {
       result.push(`(min-width: ${breakpointMap[breakpoint]}px) ${size}`);
     } else {
       result.push(size);
     }
   }
-  
-  return result.join(', ');
+
+  return result.join(", ");
 }
 
 const srcset = generateSrcSet(breakpoints, aspectRatio);
@@ -58,14 +58,46 @@ const largestBreakpoint = breakpoints[breakpoints.length - 1];
 const largestHeight = Math.round(largestBreakpoint / aspectRatio);
 ---
 
-<picture class="cs-picture bg-tropical-teal">
-<img 
-  src={`${baseUrl}-/scale_crop/${largestBreakpoint}x${largestHeight}/center/-/format/auto/-/quality/smart/`} 
-  srcset={srcset}
-  sizes={parsedSizes}
-  alt={alt}
-  loading="lazy"
-  decoding="async"
-  class={className}
-/>
+<picture class="cs-picture">
+  <img
+    src={`${baseUrl}-/scale_crop/${largestBreakpoint}x${largestHeight}/-/format/auto/-/quality/smart/`}
+    srcset={srcset}
+    sizes={parsedSizes}
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+    width={largestBreakpoint}
+    height={largestHeight}
+    style={`aspect-ratio: ${aspectRatio};`}
+    class={className}
+  />
 </picture>
+
+<script define:vars={{ srcset, parsedSizes }}>
+  console.log("Generated srcset:", srcset);
+  console.log("Parsed sizes:", parsedSizes);
+  console.log(
+    "Current image src:",
+    document.querySelector(".testimonial img").currentSrc,
+  );
+</script>
+
+<script>
+  function logImageInfo() {
+    const img = document.querySelector(".testimonial img");
+    console.log("Viewport width:", window.innerWidth);
+    console.log("Image natural width:", img.naturalWidth);
+    console.log("Image displayed width:", img.offsetWidth);
+    console.log("Current image src:", img.currentSrc);
+  }
+
+  // Log on load
+  window.addEventListener("load", logImageInfo);
+
+  // Log on resize (debounced)
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(logImageInfo, 250);
+  });
+</script>

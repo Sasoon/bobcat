@@ -15,8 +15,8 @@
       "@/components/*": [
         "./src/layouts/components/*"
       ],
-      "@/codestitch/*": [
-        "./src/codestitch/*"
+      "@/blocks/*": [
+        "./src/blocks/*"
       ],
       "@/shortcodes/*": [
         "./src/layouts/shortcodes/*"

@@ -5,50 +5,99 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
-
-const { footer_content, copyright } = config.params;
 ---
 
-<footer class="section bg-midnight-teal pb-0">
-  <div class="container">
-    {/* footer menu */}
-    <div class="row">
-      {
-        menu.footer.map((col) => {
-          return (
-            <div class="mb-12 sm:col-6 lg:col-3">
-              <h2 class="h4" set:html={markdownify(col.name)} />
-              <ul class="mt-6">
-                {col?.menu.map((item) => (
-                  <li class="mb-1">
-                    <a class="text-body" href={item.url} rel="">
-                      {item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          );
-        })
-      }
-      {/* social icons */}
-      <div class="md-12 sm:col-6 lg:col-3">
-        <a href="/" aria-label="Bigspring">
-          <Image
-            src={config.site.logo}
-            width={Number(config.site.logo_width)}
-            height={Number(config.site.logo_height)}
+<footer class="py-12 bg-gray-900 lg:py-20 sm:py-16">
+  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="lg:flex lg:items-start lg:justify-between">
+      <div class="text-center lg:text-left">
+        <a href="#" title="" class="flex">
+          <img
+            class="w-auto mx-auto h-32 lg:mx-0"
+            src="/images/logo.png"
             alt=""
           />
         </a>
-
-        <p class="mt-3 mb-6" set:html={markdownify(footer_content)} />
-        <Social source={social} className="social-icons mb-8" />
       </div>
-    </div>
-    {/* copyright */}
-    <div class="border-t border-border py-6">
-      <p class="text-sm text-center" set:html={markdownify(copyright)} />
+
+      <div class="mt-6 lg:mt-0">
+        <div class="flex items-center justify-center lg:justify-start">
+          <div
+            class="inline-flex items-center justify-center px-5 py-4 border border-gray-800 lg:w-auto rounded-2xl"
+          >
+            <svg
+              class="w-6 h-6 text-gray-600 shrink-0"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <a href="#" title="" class="ml-4 text-lg font-normal text-white">
+              hello@bobcat.dev
+            </a>
+          </div>
+        </div>
+
+        <ul
+          class="flex items-center justify-center mt-8 space-x-6 lg:justify-start sm:space-x-12"
+        >
+          <li>
+            <a
+              href="/"
+              title=""
+              class="flex text-base font-normal transition-all duration-200 transform text-gray-50 hover:text-white hover:-translate-y-1"
+            >
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/about"
+              title=""
+              class="flex text-base font-normal transition-all duration-200 transform text-gray-50 hover:text-white hover:-translate-y-1"
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/services"
+              title=""
+              class="flex text-base font-normal transition-all duration-200 transform text-gray-50 hover:text-white hover:-translate-y-1"
+            >
+              Services
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/contact"
+              title=""
+              class="flex text-base font-normal transition-all duration-200 transform text-gray-50 hover:text-white hover:-translate-y-1"
+            >
+              Contact
+            </a>
+          </li>
+          <li>
+            <a
+              href="/faq"
+              title=""
+              class="flex text-base font-normal transition-all duration-200 transform text-gray-50 hover:text-white hover:-translate-y-1"
+            >
+              FAQ
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
