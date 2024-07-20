@@ -1,39 +1,310 @@
 ---
 import Base from "@/layouts/Base.astro";
+import ResponsiveImage from "@/layouts/components/Image.astro";
 ---
 
 <Base>
-  <section id="RPsbsr-319">
+  <!-- ============================================ -->
+  <!--            Side By Side Reverse              -->
+  <!-- ============================================ -->
+
+  <style>
+    /*-- -------------------------- -->
+<---   Side By Side Reverse     -->
+<--- -------------------------- -*/
+
+    /* Mobile - 360px */
+    @media only screen and (min-width: 0rem) {
+      #sbsr-298 {
+        padding: var(--sectionPadding);
+
+        .cs-container {
+          width: 100%;
+          /* changes to 1280px at desktop */
+          max-width: calc(550 / 16 * 1rem);
+          margin: auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+        }
+
+        .cs-content {
+          /* set text align to left if content needs to be left aligned */
+          text-align: center;
+          width: 100%;
+          max-width: calc(522 / 16 * 1rem);
+          display: flex;
+          flex-direction: column;
+          /* centers content horizontally, set to flex-start to left align */
+          align-items: center;
+        }
+
+        .cs-text {
+          margin-bottom: calc(16 / 16 * 1rem);
+          &:last-of-type {
+            margin-bottom: calc(32 / 16 * 1rem);
+          }
+        }
+
+        .cs-link {
+          font-size: calc(20 / 16 * 1rem);
+          font-weight: 700;
+          text-decoration: none;
+          color: var(--primary);
+        }
+
+        .cs-button-solid {
+          font-size: calc(16 / 16 * 1rem);
+          /* 46px - 56px */
+          line-height: clamp(2.875rem, 5.5vw, 3.5rem);
+          text-decoration: none;
+          font-weight: 700;
+          text-align: center;
+          margin: 0;
+          color: #fff;
+          min-width: calc(150 / 16 * 1rem);
+          padding: 0 calc(24 / 16 * 1rem);
+          background-color: var(--primary);
+          border-radius: calc(4 / 16 * 1rem);
+          display: inline-block;
+          position: relative;
+          z-index: 1;
+          /* prevents padding from adding to the width */
+          box-sizing: border-box;
+
+          &:before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 0%;
+            background: #000;
+            opacity: 1;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: calc(4 / 16 * 1rem);
+            transition: width 0.3s;
+          }
+
+          &:hover {
+            &:before {
+              width: 100%;
+            }
+          }
+        }
+
+        .cs-image-group {
+          width: 100%;
+          max-width: calc(550 / 16 * 1rem);
+          /* 78px - 108px */
+          margin: 0 auto clamp(4.875rem, 16.5vw, 6.75rem);
+          position: relative;
+          display: block;
+          /* width divided by height */
+          aspect-ratio: 328/363;
+        }
+
+        .cs-picture {
+          /* big background image */
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: calc(10 / 16 * 1rem);
+            object-fit: fill;
+          }
+        }
+
+        .cs-box {
+          /* 204px - 326px & changes at desktop */
+          width: clamp(12.75rem, 50vw, 20.375rem);
+          height: clamp(12.75rem, 50vw, 20.375rem);
+          border-radius: calc(10 / 16 * 1rem);
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          position: absolute;
+          left: 50%;
+          /* 38px - 60px - wrapped in a calc function to make clamp values negative */
+          bottom: calc(clamp(2.375rem, 7.9vw, 3.75rem) * -1);
+          transform: translateX(-50%);
+          z-index: 10;
+        }
+
+        .cs-box-picture {
+          /* Background image for cs-box */
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+          border-radius: calc(10 / 16 * 1rem);
+          /* clips img corners and bg corners */
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: block;
+          z-index: -1;
+
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.65;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .cs-number {
+          /* 75px - 100px */
+          font-size: clamp(4.6875rem, 8vw, 6.25rem);
+          line-height: 1em;
+          font-weight: 900;
+          margin-bottom: calc(8 / 16 * 1rem);
+          color: var(--headerColor);
+          /* creates the transparent clipping text */
+          mix-blend-mode: screen;
+          display: block;
+          z-index: 10;
+
+          &:before {
+            /* opaque white box - For mix-blend-mode to work, we need the 
+                   white box inside the .cs-number, so we use a pseudo element.
+                   We DON'T add a position to the cs-number so the pseudo positions
+                   itself relative to the .cs-box, which has position relative. This
+                   allows us to center to .cs-number pseudo inside the .cs-box */
+            content: "";
+            /* 184px - 294px & changes at desktop */
+            width: clamp(11.5rem, 45vw, 18.375rem);
+            height: clamp(11.5rem, 45vw, 18.375rem);
+            opacity: 1;
+            background-color: #fff;
+            border-radius: calc(7 / 16 * 1rem);
+            position: absolute;
+            display: block;
+            /* these next 3 properties are an old school way to center an absolutely
+                   positioned element inside a relative position parent */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+          }
+        }
+
+        .cs-desc {
+          /* 16px - 25px */
+          font-size: clamp(1rem, 4vw, 1.5625rem);
+          font-weight: 700;
+          line-height: 1.2em;
+          text-transform: lowercase;
+          text-align: center;
+          width: 80%;
+          color: var(--headerColor);
+          position: relative;
+          z-index: 10;
+        }
+      }
+    }
+
+    /* Desktop - 1024px */
+    @media only screen and (min-width: 64rem) {
+      #sbsr-298 {
+        /* aligns the button */
+        text-align: left;
+        .cs-container {
+          max-width: calc(1280 / 16 * 1rem);
+          /* set to horizontal arrangement */
+          flex-direction: row;
+          justify-content: space-between;
+          gap: calc(160 / 16 * 1rem);
+        }
+
+        .cs-content {
+          text-align: left;
+          align-items: flex-start;
+        }
+
+        .cs-image-group {
+          width: 40vw;
+          max-width: calc(521 / 16 * 1rem);
+          /* 520px - 672px */
+          height: clamp(32.5rem, 51.9vw, 42rem);
+          margin: 0;
+          /* sends it to the right in the 2nd position */
+          order: 2;
+        }
+
+        .cs-box {
+          /* 251px - 325px */
+          width: clamp(15.6875rem, 24.5vw, 20.3125rem);
+          height: clamp(15.6875rem, 24.5vw, 20.3125rem);
+          left: auto;
+          transform: none;
+          /* -52px to -102px */
+          left: calc(clamp(3.25rem, 5.5vw + 1.6rem, 6.375rem) * -1);
+          /* 62px - 80px */
+          bottom: clamp(3.875rem, 6.2vw, 5rem);
+        }
+
+        .cs-number {
+          &:before {
+            /* 226px - 293px */
+            width: clamp(14.125rem, 22.7vw, 18.3125rem);
+            height: clamp(14.125rem, 22.7vw, 18.3125rem);
+          }
+        }
+      }
+    }
+  </style>
+
+  <section id="sbsr-298">
     <div class="cs-container">
       <!-- Left Image Section -->
-      <picture class="cs-picture">
-        <source
-          media="(max-width: 600px)"
-          srcset="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/"
+      <div class="cs-image-group">
+        <!--Floating Box-->
+        <div class="cs-box">
+          <span class="cs-number">14</span>
+          <span class="cs-desc">years of practicing</span>
+          <!--Background image for cs-box-->
+          <div class="cs-box-picture opacity-50"></div>
+        </div>
+        <!--Big Background Image-->
+        <ResponsiveImage
+          uuid="56ab45b4-f203-4d01-bc37-2e5a66ac03c8"
+          alt="Sasoon Sarkisian"
+          sizes="sm:100vw md:50vw lg:33vw"
+          className="shadow-md"
+          isBackground={false}
+          crop={false}
         />
-        <source
-          media="(min-width: 601px)"
-          srcset="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/"
-        />
-        <img
-          loading="lazy"
-          decoding="async"
-          src="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/gst"
-          alt="consult"
-          width="520"
-          height="680"
-          aria-hidden="true"
-        />
-      </picture>
+      </div>
       <!-- Right Content Section-->
       <div class="cs-content">
-        <span class="cs-topper">founder & lead developer</span>
-        <h2 class="cs-title font-secondary">Hey, I'm Sas!</h2>
+        <span class="cs-topper">Who We Are</span>
+        <h2 class="cs-title">Good People, Great Lawyers</h2>
         <p class="cs-text">
-          I've been working as a developer for just shy of a decade in all kinds
-          of industries and capacities. Now I'm turning my sights back to
-          freelancing with Bobcat, a one man shop dedicated to helping small
-          businesses grow their online presence.
+          If you are facing criminal charges, it is crucial to have effective
+          representation immediately. Not only during trial, but also during the
+          pretrial phase as well. At Bernstein Attorneys, our London criminal
+          defense lawyer give your case our full time and attention, to ensure
+          you are treated fairly under the justice system.
+        </p>
+        <p class="cs-text">
+          Call to ask any question: <a class="cs-link" href="tel:"
+            >(555) 455-4555</a
+          >
         </p>
         <a
           class="cs-button-solid"
@@ -44,259 +315,3 @@ import Base from "@/layouts/Base.astro";
     </div>
   </section>
 </Base>
-
-<style>
-  /*-- -------------------------- -->
-<---       Side By Side         -->
-<--- -------------------------- -*/
-
-  /* Mobile - 360px */
-  @media only screen and (min-width: 0rem) {
-    #RPsbs-319,
-    #RPsbsr-319 {
-      padding: var(--sectionPadding);
-
-      .cs-container {
-        width: 100%;
-        /* changes to 1280px at desktop */
-        max-width: calc(550 / 16 * 1rem);
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        /* 48px - 64px */
-        gap: clamp(3rem, 6vw, 4rem);
-      }
-
-      .cs-content {
-        /* set text align to left if content needs to be left aligned */
-        text-align: center;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        /* centers content horizontally, set to flex-start to left align */
-        align-items: center;
-      }
-
-      .cs-text {
-        margin-bottom: calc(16 / 16 * 1rem);
-        &:last-of-type {
-          margin-bottom: calc(32 / 16 * 1rem);
-        }
-      }
-
-      .cs-button-solid {
-        font-size: calc(16 / 16 * 1rem);
-        /* 46px - 56px */
-        line-height: clamp(2.875rem, 5.5vw, 3.5rem);
-        text-decoration: none;
-        font-weight: 700;
-        text-align: center;
-        margin: 0;
-        color: #fff;
-        min-width: calc(150 / 16 * 1rem);
-        padding: 0 calc(24 / 16 * 1rem);
-        background-color: var(--primary);
-        border-radius: calc(4 / 16 * 1rem);
-        display: inline-block;
-        position: relative;
-        z-index: 1;
-        /* prevents padding from adding to the width */
-        box-sizing: border-box;
-
-        &:before {
-          content: "";
-          position: absolute;
-          height: 100%;
-          width: 0%;
-          background: #000;
-          opacity: 1;
-          top: 0;
-          left: 0;
-          z-index: -1;
-          border-radius: calc(4 / 16 * 1rem);
-          transition: width 0.3s;
-        }
-
-        &:hover {
-          &:before {
-            width: 100%;
-          }
-        }
-      }
-
-      .cs-ring-wrapper {
-        position: relative;
-        margin: 0 0 calc(8 / 16 * 1rem) 0;
-      }
-
-      .cs-number {
-        /* 20px - 39px */
-        font-size: clamp(1.25rem, 3vw, 2.4375rem);
-        font-weight: 900;
-        /* prevents mouse from interacting with it */
-        pointer-events: none;
-        line-height: 1.2em;
-        color: var(--headerColor);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .cs-desc {
-        /* 14px - 16px */
-        font-size: clamp(0.875rem, 1.4vw, 1rem);
-        line-height: 1.5em;
-        text-align: center;
-        width: 100%;
-        color: var(--bodyTextColor);
-      }
-
-      .cs-ring {
-        --ring-width: 8px;
-
-        width: calc(100% - var(--ring-width));
-        aspect-ratio: 1;
-        overflow: visible;
-        pointer-events: none;
-        rotate: -90deg;
-        scale: 1 -1;
-      }
-
-      .cs-ring circle {
-        fill: none;
-        stroke: #f7f7f7;
-        stroke-width: var(--ring-width);
-      }
-
-      .cs-ring circle:last-of-type {
-        stroke: var(--secondaryLight);
-        stroke-linecap: round;
-        stroke-dasharray: calc(var(--ratio) * 314%) 314%;
-
-        transition: stroke-dasharray 1s;
-      }
-
-      .cs-picture {
-        /* set font size to scale with view width, stopping at 68% the value of em */
-        font-size: min(2.16vw, 0.68em);
-        width: calc(520 / 16 * 1em);
-        height: calc(680 / 16 * 1em);
-        /* margin top and bottom to match the exact amount the grey square overflows the parent for consistent spacing */
-        margin: calc(48 / 16 * 1em) 0;
-        position: relative;
-        display: block;
-        &:before {
-          /* grey box */
-          content: "";
-          width: 100%;
-          height: 100%;
-          border-radius: calc(12 / 16 * 1rem);
-          background: #bababa;
-          opacity: 1;
-          position: absolute;
-          display: block;
-          top: 0;
-          left: 0;
-          transform: rotate(15deg);
-        }
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
-          border-radius: calc(10 / 16 * 1rem);
-          object-fit: cover;
-        }
-      }
-    }
-  }
-
-  /* Desktop - 1024px */
-  @media only screen and (min-width: 64rem) {
-    #RPsbs-319,
-    #RPsbsr-319 {
-      .cs-container {
-        max-width: calc(1280 / 16 * 1rem);
-        /* set to horizontal arrangement */
-        flex-direction: row;
-        justify-content: center;
-        /* 77px - 160px */
-        gap: clamp(4.8125rem, 10vw + 1rem, 10rem);
-      }
-
-      .cs-content {
-        text-align: left;
-        align-items: flex-start;
-      }
-
-      .cs-picture {
-        font-size: min(1.1vw, 1em);
-        margin: calc(56 / 16 * 1em) 0 calc(56 / 16 * 1em) calc(80 / 16 * 1em);
-        /* prevent flexbox from squishing it */
-        flex: none;
-      }
-
-      .cs-ring-wrapper {
-        /* breaks the children out of the container.  They can now be arranged as if they are all children of the cs-circle */
-        display: contents;
-      }
-
-      .cs-ring {
-        /* make the ring position absolute so it can sit on top of the other elements that are centered relatively in the cs-circle */
-        width: 100%;
-        height: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-
-      .cs-number {
-        /* make the number relative positioning so it and the cs-desc can position themselves around each other */
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-      }
-
-      .cs-desc {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-      }
-    }
-  }
-
-  /*-- -------------------------- -->
-<---    Side By Side Reverse    -->
-<--- -------------------------- -*/
-
-  /* Mobile - 360px */
-  @media only screen and (min-width: 0rem) {
-    #RPsbsr-319 {
-      background-color: #f7f7f7;
-
-      .cs-picture {
-        &:before {
-          transform: rotate(-15deg);
-        }
-      }
-    }
-  }
-
-  /* Desktop - 1024px */
-  @media only screen and (min-width: 64rem) {
-    #RPsbsr-319 {
-      .cs-picture {
-        margin-left: 0;
-        margin-right: calc(80 / 16 * 1rem);
-        /* sends it to the right */
-        order: 2;
-      }
-    }
-  }
-</style>

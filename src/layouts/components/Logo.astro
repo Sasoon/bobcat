@@ -17,43 +17,58 @@ const {
 } = config.site;
 ---
 
-<a href="/" class="navbar-brand block w-auto">
-  {
-    src || logo ? (
-      <Image
-        width={logo_width.replace("px", "") * 2}
-        height={logo_height.replace("px", "") * 2}
-        src={src ? src : logo}
-        id="logo"
-        alt={title}
-        style={{
-          height: logo_height.replace("px", "") + "px",
-          width: logo_width.replace("px", "") + "px",
-        }}
-      />
-    ) : logo_text ? (
-      logo_text
-    ) : (
-      title
-    )
-  }
+<a href="/" class="navbar-brand block w-auto flex items-center relative">
+  <div id="logo-container" class="relative z-10">
+    {
+      src || logo ? (
+        <Image
+          width={logo_width.replace("px", "") * 2}
+          height={logo_height.replace("px", "") * 2}
+          src={src ? src : logo}
+          id="logo"
+          alt={title}
+          style={{
+            height: logo_height.replace("px", "") + "px",
+            width: logo_width.replace("px", "") + "px",
+          }}
+        />
+      ) : logo_text ? (
+        logo_text
+      ) : (
+        title
+      )
+    }
+  </div>
+  <span
+    class="ml-2 font-tertiary text-4xl font-bold transition-all duration-300 ease-in-out text-black text-shadow-black-outline"
+    id="logo-text"
+  >
+    BOBCAT
+  </span>
 </a>
 
 <script>
+  const logoContainer = document.getElementById("logo-container");
   const logo = document.getElementById("logo");
-  const scrollThreshold = 5; // Adjust this value as needed
+  const logoText = document.getElementById("logo-text");
+  const lgBreakpoint = 1024; // Tailwind's default lg breakpoint
 
-  function updateHeader() {
-    if (window.scrollY > scrollThreshold) {
-      logo.style.transition = "transform 0.2s ease";
-      logo.style.transform = "scale(0.9)";
+  function updateLogoText() {
+    if (window.innerWidth < lgBreakpoint) {
+      if (logoText && logoContainer) {
+        const logoWidth = logoContainer.offsetWidth;
+        logoText.style.transform = `translateX(-${logoWidth}px)`;
+        logoText.style.opacity = "0";
+      }
     } else {
-      logo.style.transition = "transform 0.2s ease";
-      logo.style.transform = "scale(1)";
+      if (logoText) {
+        logoText.style.transform = "translateX(0)";
+        logoText.style.opacity = "1";
+      }
     }
   }
 
-  window.addEventListener("scroll", updateHeader);
+  window.addEventListener("resize", updateLogoText);
   // Run once on load to set initial state
-  updateHeader();
+  updateLogoText();
 </script>

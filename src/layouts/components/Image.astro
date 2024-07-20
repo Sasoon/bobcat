@@ -6,6 +6,8 @@ interface Props {
   breakpoints?: number[];
   className?: string;
   aspectRatio?: number;
+  crop?: boolean;
+  isBackground?: boolean;
 }
 
 const {
@@ -14,22 +16,32 @@ const {
   sizes = "sm:100vw md:50vw lg:33vw",
   breakpoints = [640, 768, 1024, 1280, 1536],
   className = "",
-  aspectRatio = 16 / 9, // default aspect ratio
+  aspectRatio = 16 / 9,
+  crop = false,
+  isBackground = false,
 } = Astro.props;
 
 const baseUrl = `https://ucarecdn.com/${uuid}/`;
 
-function generateSrcSet(breakpoints: number[], aspectRatio: number): string {
-  return breakpoints
+function generateSrcSet(
+  breakpoints: number[],
+  aspectRatio: number,
+  crop: boolean,
+): string {
+  const srcSet = breakpoints
     .map((width) => {
       const height = Math.round(width / aspectRatio);
-      return `${baseUrl}-/scale_crop/${width}x${height}/-/format/auto/-/quality/smart/ ${width}w`;
+      const cropParam = crop
+        ? `-/crop/${width}x${height}/center/`
+        : `-/resize/${width}x${height}/`;
+      return `${baseUrl}${cropParam}-/format/auto/-/quality/smart/ ${width}w`;
     })
     .join(", ");
+  return srcSet;
 }
 
 function parseTailwindSizes(sizes: string): string {
-  const breakpointMap = {
+  const breakpointMap: { [key: string]: number } = {
     sm: 640,
     md: 768,
     lg: 1024,
@@ -38,11 +50,11 @@ function parseTailwindSizes(sizes: string): string {
   };
 
   const parts = sizes.split(" ").reverse();
-  let result = [];
+  let result: string[] = [];
 
   for (let part of parts) {
     const [breakpoint, size] = part.split(":");
-    if (breakpointMap[breakpoint]) {
+    if (breakpoint && breakpointMap[breakpoint]) {
       result.push(`(min-width: ${breakpointMap[breakpoint]}px) ${size}`);
     } else {
       result.push(size);
@@ -52,52 +64,88 @@ function parseTailwindSizes(sizes: string): string {
   return result.join(", ");
 }
 
-const srcset = generateSrcSet(breakpoints, aspectRatio);
+const srcset = generateSrcSet(breakpoints, aspectRatio, crop);
 const parsedSizes = parseTailwindSizes(sizes);
 const largestBreakpoint = breakpoints[breakpoints.length - 1];
 const largestHeight = Math.round(largestBreakpoint / aspectRatio);
+const cropParam = crop
+  ? `-/crop/${largestBreakpoint}x${largestHeight}/center/`
+  : `-/resize/${largestBreakpoint}x${largestHeight}/`;
+const largestImageUrl = `${baseUrl}${cropParam}-/format/auto/-/quality/smart/`;
 ---
 
-<picture class="cs-picture">
-  <img
-    src={`${baseUrl}-/scale_crop/${largestBreakpoint}x${largestHeight}/-/format/auto/-/quality/smart/`}
-    srcset={srcset}
-    sizes={parsedSizes}
-    alt={alt}
-    loading="lazy"
-    decoding="async"
-    width={largestBreakpoint}
-    height={largestHeight}
-    style={`aspect-ratio: ${aspectRatio};`}
-    class={className}
-  />
-</picture>
-
-<script define:vars={{ srcset, parsedSizes }}>
-  console.log("Generated srcset:", srcset);
-  console.log("Parsed sizes:", parsedSizes);
-  console.log(
-    "Current image src:",
-    document.querySelector(".testimonial img").currentSrc,
-  );
-</script>
+{
+  isBackground ? (
+    <div
+      class={`cs-background ${className}`}
+      style={`
+      background-image: url('${largestImageUrl}');
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: ${aspectRatio};
+    `}
+      role="img"
+      aria-label={alt}
+    />
+  ) : (
+    <picture class="cs-picture">
+      <img
+        src={largestImageUrl}
+        srcset={srcset}
+        sizes={parsedSizes}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        width={largestBreakpoint}
+        height={largestHeight}
+        style={`aspect-ratio: ${aspectRatio};`}
+        class={`responsive-image ${className}`}
+      />
+    </picture>
+  )
+}
 
 <script>
-  function logImageInfo() {
-    const img = document.querySelector(".testimonial img");
-    console.log("Viewport width:", window.innerWidth);
-    console.log("Image natural width:", img.naturalWidth);
-    console.log("Image displayed width:", img.offsetWidth);
-    console.log("Current image src:", img.currentSrc);
+  function updateImageSrc() {
+    const images = document.querySelectorAll("img.responsive-image");
+    images.forEach((img) => {
+      if (img instanceof HTMLImageElement) {
+        const currentSrcset = img.srcset;
+        img.srcset = "";
+        setTimeout(() => {
+          img.srcset = currentSrcset;
+        }, 0);
+      }
+    });
   }
 
-  // Log on load
-  window.addEventListener("load", logImageInfo);
+  function logImageInfo() {
+    const images = document.querySelectorAll("img.responsive-image");
+    images.forEach((img, index) => {
+      if (img instanceof HTMLImageElement) {
+        console.log(`Image ${index + 1}:`);
+        console.log("Viewport width:", window.innerWidth);
+        console.log("Image natural width:", img.naturalWidth);
+        console.log("Image displayed width:", img.offsetWidth);
+        console.log("Current image src:", img.currentSrc);
+        console.log("---");
+      }
+    });
+  }
 
-  // Log on resize (debounced)
+  // Update and log on load
+  window.addEventListener("load", () => {
+    updateImageSrc();
+    logImageInfo();
+  });
+
+  // Update and log on resize (debounced)
   let resizeTimer;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(logImageInfo, 250);
+    resizeTimer = setTimeout(() => {
+      updateImageSrc();
+      logImageInfo();
+    }, 250);
   });
 </script>

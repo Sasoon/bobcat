@@ -9,3 +9,15 @@ code {
 .shadow {
   box-shadow: 0 12px 24px -6px rgba(45,67,121,.1);
 }
+
+.gradient {
+  @apply bg-gradient-to-r;
+  @apply from-fuchsia-600;
+  @apply to-blue-600;
+}
+
+.text-gradient {
+  @apply gradient;
+  @apply bg-clip-text;
+  @apply text-transparent;
+}

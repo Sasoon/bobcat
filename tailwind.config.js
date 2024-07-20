@@ -8,7 +8,7 @@ let h4 = h5 * font_scale;
 let h3 = h4 * font_scale;
 let h2 = h3 * font_scale;
 let h1 = h2 * font_scale;
-let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
+let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType, fontTertiary, fontTertiaryType;
 if (theme.fonts.font_family.primary) {
   fontPrimary = theme.fonts.font_family.primary
     .replace(/\+/g, " ")
@@ -20,6 +20,12 @@ if (theme.fonts.font_family.secondary) {
     .replace(/\+/g, " ")
     .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
   fontSecondaryType = theme.fonts.font_family.secondary_type;
+}
+if (theme.fonts.font_family.tertiary) {
+  fontTertiary = theme.fonts.font_family.tertiary
+    .replace(/\+/g, " ")
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;]+/gi, "");
+  fontTertiaryType = theme.fonts.font_family.tertiary_type;
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -64,6 +70,7 @@ module.exports = {
       fontFamily: {
         primary: [fontPrimary, fontPrimaryType],
         secondary: [fontSecondary, fontSecondaryType],
+        tertiary: [fontTertiary, fontTertiaryType],
       },
     },
   },

@@ -7,47 +7,227 @@ const entry = (await getEntryBySlug("faq", "index")) as TPostType;
 const { title, description, faqs } = entry.data;
 ---
 
-<script>
-  const faqItems = Array.from(document.querySelectorAll(".cs-faq-item"));
-  for (const item of faqItems) {
-    const onClick = () => {
-      item.classList.toggle("active");
-    };
-    item.addEventListener("click", onClick);
-  }
-</script>
 <Base title={title} description={description}>
-  <section class="section">
-    <div class="container">
-      <h1 class="text-center font-bold" set:html={markdownify(title)} />
-      <div class="section row -mt-6">
-        <section id="faq-1505">
-          <div class="cs-container">
-            <div class="cs-flex-group">
-              <ul class="cs-faq-group">
-                <!-- Active class added as default -->
-                {
-                  faqs?.map((faq) => (
-                    <li class="cs-faq-item">
-                      <button class="cs-button">
-                        <span
-                          set:html={markdownify(faq.title)}
-                          class="cs-button-text"
-                        />
-                        <span class="cs-indicator" aria-hidden="true" />
-                      </button>
-                      <p
-                        class="cs-item-p faq-body mt-4"
-                        set:html={markdownify(faq.answer)}
-                      />
-                    </li>
-                  ))
-                }
-              </ul>
+  <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2
+          class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl"
+        >
+          Frequently Asked Questions
+        </h2>
+        <p
+          class="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600"
+        >
+          Amet minim mollit non deserunt ullamco est sit aliqua dolor do
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16">
+        <div
+          class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
+        >
+          <button
+            type="button"
+            class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+          >
+            <span class="flex text-lg font-semibold text-black">
+              How can I make payment using Paypal?
+            </span>
+
+            <svg
+              class="w-6 h-6 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div class="px-4 pb-5 sm:px-6 sm:pb-6">
+            <p>
+              Amet minim mollit non deserunt ullamco est sit <a
+                href="#"
+                title=""
+                class="text-blue-600 transition-all duration-200 hover:underline"
+                >aliqua dolor</a
+              > do amet sint. Velit officia consequat duis enim velit mollit.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
+        >
+          <div class="">
+            <button
+              type="button"
+              class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+            >
+              <span class="flex text-lg font-semibold text-black">
+                Can I cancel my plan?
+              </span>
+
+              <svg
+                class="w-6 h-6 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <div class="px-4 pb-5 sm:px-6 sm:pb-6">
+              <p>
+                Amet minim mollit non deserunt ullamco est sit <a
+                  href="#"
+                  title=""
+                  class="text-blue-600 transition-all duration-200 hover:underline"
+                  >aliqua dolor</a
+                > do amet sint. Velit officia consequat duis enim velit mollit.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+
+        <div
+          class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
+        >
+          <button
+            type="button"
+            class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+          >
+            <span class="flex text-lg font-semibold text-black">
+              How can I reach to support?
+            </span>
+
+            <svg
+              class="w-6 h-6 text-gray-400"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div class="px-4 pb-5 sm:px-6 sm:pb-6">
+            <p>
+              Amet minim mollit non deserunt ullamco est sit <a
+                href="#"
+                title=""
+                class="text-blue-600 transition-all duration-200 hover:underline"
+                >TEST
+              </a> do amet sint. Velit officia consequat duis enim velit mollit.
+            </p>
+          </div>
+        </div>
       </div>
+
+      <p class="text-center text-gray-600 textbase mt-9">
+        Didn't find the answer you are looking for? <a
+          href="#"
+          title=""
+          class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
+          >Contact our support</a
+        >
+      </p>
     </div>
   </section>
 </Base>
+
+<style>
+  .faq-content {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition:
+      height 0.3s ease-out,
+      opacity 0.3s ease-out,
+      padding 0.3s ease-out;
+  }
+  .faq-content.active {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  function initializeFAQ() {
+    const faqItems = document.querySelectorAll(
+      ".transition-all.duration-200.bg-white.border.border-gray-200",
+    );
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector("button");
+      const content = item.querySelector('div[class^="px-4"]');
+      const svg = button.querySelector("svg");
+
+      if (content) {
+        content.classList.add("faq-content");
+
+        button.addEventListener("click", () => {
+          const isActive = content.classList.contains("active");
+
+          // Close all other active items
+          faqItems.forEach((otherItem) => {
+            if (otherItem !== item) {
+              const otherContent = otherItem.querySelector(".faq-content");
+              otherContent.style.height = "0px";
+              otherContent.style.paddingTop = "0px";
+              otherContent.style.paddingBottom = "0px";
+              otherContent.classList.remove("active");
+              otherItem.querySelector("svg").classList.remove("rotate-180");
+              otherItem.classList.remove("shadow-lg");
+            }
+          });
+
+          // Toggle current item
+          if (!isActive) {
+            content.classList.add("active");
+            const contentHeight = content.scrollHeight;
+            const paddingTop = 16; // 1rem
+            const paddingBottom = Math.max(24, contentHeight * 0.1); // At least 1.5rem or 10% of content height
+            content.style.height = `${contentHeight + paddingTop + paddingBottom}px`;
+            content.style.paddingTop = `${paddingTop}px`;
+            content.style.paddingBottom = `${paddingBottom}px`;
+          } else {
+            content.classList.remove("active");
+            content.style.height = "0px";
+            content.style.paddingTop = "0px";
+            content.style.paddingBottom = "0px";
+          }
+          svg.classList.toggle("rotate-180");
+          item.classList.toggle("shadow-lg");
+        });
+      }
+    });
+  }
+
+  // Run initialization immediately
+  initializeFAQ();
+
+  // Also run initialization when the DOM content is loaded
+  document.addEventListener("DOMContentLoaded", initializeFAQ);
+
+  // For Astro's view transitions
+  document.addEventListener("astro:page-load", initializeFAQ);
+</script>

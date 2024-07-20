@@ -17,7 +17,6 @@
     "@astrojs/tailwind": "^5.1.0",
     "astro": "^4.3.2",
     "astro-auto-import": "^0.4.2",
-    "astro-font": "^0.0.81",
     "fuse.js": "^7.0.0",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",

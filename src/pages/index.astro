@@ -4,7 +4,7 @@ import { getEntryBySlug } from "astro:content";
 import WhoWeAre from "@/blocks/who-we-are.astro";
 import Features from "@/blocks/features.astro";
 import PricingTestimonial from "@/blocks/pricing-testimonial.astro";
-import Btn from "@/blocks/btn.astro";
+import Btn from "@/components/Btn.astro";
 
 const homepage = await getEntryBySlug("homepage", "index");
 const { banner } = homepage.data;
@@ -59,7 +59,7 @@ const { banner } = homepage.data;
               </h1>
               <p class="mt-2 text-lg text-gray-600 sm:mt-8 font-inter">
                 Cut through the competition and slash your budget simultaneously
-                with a Bobcat site, starting from as low as $350/month with $0
+                with a Bobcat site, starting from as low as $250/month with $0
                 upfront.
               </p>
 

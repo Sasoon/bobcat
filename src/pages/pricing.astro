@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import type { TPostType, TPlan } from "@/types";
+import Btn from "@/components/Btn.astro";
 import { getEntryBySlug } from "astro:content";
 
 const entry = (await getEntryBySlug("pricing", "index")) as TPostType;
@@ -539,18 +540,11 @@ const { title, description, plans, call_to_action } = entry.data;
       <div class="mt-8 text-center">
         <div class="flex items-end justify-center mt-10">
           <p class="text-lg font-bold text-gray-400 font-pj">$</p>
-          <p class="text-6xl font-bold text-gray-900 font-pj">350</p>
+          <p class="text-6xl font-bold text-gray-900 font-pj">299</p>
           <p class="text-lg font-bold text-gray-400 font-pj">/month</p>
         </div>
 
-        <a
-          href="#"
-          title=""
-          class="relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-200 bg-gray-900 border border-transparent mt-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl"
-          role="button"
-        >
-          Get started for $0
-        </a>
+        <Btn text="Book a call" href="/contact" ariaLabel="Book a call" />
       </div>
     </div>
   </section>
