@@ -222,10 +222,7 @@ const { title, description, faqs } = entry.data;
     });
   }
 
-  // Run initialization immediately
-  initializeFAQ();
-
-  // Also run initialization when the DOM content is loaded
+  // Run initialization when the DOM content is loaded
   document.addEventListener("DOMContentLoaded", initializeFAQ);
 
   // For Astro's view transitions
