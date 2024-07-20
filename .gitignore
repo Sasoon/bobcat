@@ -23,3 +23,7 @@ package-lock.json
 
 # ignore .astro directory
 .astro
+
+# ignore imageUUIDs.json and imageDimensions.json
+imageUUIDs.json
+src/layouts/components/imageDimensions.json

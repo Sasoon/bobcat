@@ -1,6 +1,6 @@
 [build]
-publish = "dist"
-command = "yarn build"
+  command = "node --experimental-modules src/scripts/scanUUIDs.js && node --experimental-modules src/scripts/fetchDimensions.js && npm run build"
+  publish = "dist"
 
 [[headers]]
 for = "/*" # This defines which paths this specific [[headers]] block will cover.

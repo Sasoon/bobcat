@@ -28,8 +28,15 @@ const baseUrl = `https://ucarecdn.com/${uuid}/`;
 
 const imageDimensionsCache: { [key: string]: ImageDimensions } = {};
 
+import imageDimensions from "./imageDimensions.json";
+
 async function fetchImageDimensions(uuid: string): Promise<ImageDimensions> {
   const cacheKey = `image-dimensions-${uuid}`;
+
+  // Check pre-fetched dimensions
+  if (imageDimensions[uuid]) {
+    return imageDimensions[uuid];
+  }
 
   // Check in-memory cache (for server-side rendering)
   if (imageDimensionsCache[cacheKey]) {
@@ -143,7 +150,7 @@ const lowResImageUrl = generateLowResSrc(uuid);
         srcset={srcset}
         sizes={parsedSizes}
         alt={alt}
-        loading="lazy"
+        loading="eager"
         decoding="async"
         width={largestBreakpoint}
         height={largestHeight}
@@ -174,17 +181,20 @@ const lowResImageUrl = generateLowResSrc(uuid);
 
   function observeImages() {
     const images = document.querySelectorAll("img.progressive-image");
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img instanceof HTMLImageElement) {
-            loadHighResImage(img);
-            observer.unobserve(img);
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img instanceof HTMLImageElement) {
+              loadHighResImage(img);
+              observer.unobserve(img);
+            }
           }
-        }
-      });
-    });
+        });
+      },
+      { rootMargin: "50px" },
+    );
 
     images.forEach((img) => {
       observer.observe(img);
@@ -210,7 +220,7 @@ const lowResImageUrl = generateLowResSrc(uuid);
     wait: number,
   ): (...args: Parameters<T>) => void {
     let timeout: ReturnType<typeof setTimeout>;
-    return function (...args: Parameters<T>): void {
+    return function (this: unknown, ...args: Parameters<T>): void {
       clearTimeout(timeout);
       timeout = setTimeout(() => func.apply(this, args), wait);
     };

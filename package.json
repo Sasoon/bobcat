@@ -1,12 +1,18 @@
 {
-  "name": "bigspring-light-astro",
+  "name": "bobcat",
   "version": "2.0.0",
-  "description": "astro personal blog theme",
-  "author": "themefisher",
+  "description": "bobcat-site",
+  "author": "Sas",
   "license": "MIT",
+  "type": "module",
   "scripts": {
+    "scan-uuids": "node src/scripts/scanUUIDs.js",
+    "fetch-dimensions": "node src/scripts/fetchDimensions.js",
+    "predev": "npm run scan-uuids && npm run fetch-dimensions",
     "dev": "astro dev",
+    "prebuild": "npm run scan-uuids && npm run fetch-dimensions",
     "build": "astro build",
+    "preview": "astro preview",
     "format": "prettier -w ."
   },
   "dependencies": {
@@ -21,6 +27,7 @@
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "marked": "^12.0.0",
+    "node-fetch": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",

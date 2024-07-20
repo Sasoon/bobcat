@@ -53,4 +53,13 @@ export default defineConfig({
     },
     extendDefaultPlugins: true,
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        input: {
+          imageDimensions: 'src/layouts/components/imageDimensions.json',
+        },
+      },
+    },
+  },
 });
