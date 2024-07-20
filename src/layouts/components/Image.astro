@@ -5,9 +5,13 @@ interface Props {
   sizes?: string;
   breakpoints?: number[];
   className?: string;
-  aspectRatio?: number;
   crop?: boolean;
   isBackground?: boolean;
+}
+
+interface ImageDimensions {
+  width: number;
+  height: number;
 }
 
 const {
@@ -16,12 +20,49 @@ const {
   sizes = "sm:100vw md:50vw lg:33vw",
   breakpoints = [640, 768, 1024, 1280, 1536],
   className = "",
-  aspectRatio = 16 / 9,
   crop = false,
   isBackground = false,
-} = Astro.props;
+} = Astro.props as Props;
 
 const baseUrl = `https://ucarecdn.com/${uuid}/`;
+
+const imageDimensionsCache: { [key: string]: ImageDimensions } = {};
+
+async function fetchImageDimensions(uuid: string): Promise<ImageDimensions> {
+  const cacheKey = `image-dimensions-${uuid}`;
+
+  // Check in-memory cache (for server-side rendering)
+  if (imageDimensionsCache[cacheKey]) {
+    return imageDimensionsCache[cacheKey];
+  }
+
+  // Check localStorage (for client-side rendering)
+  if (typeof window !== "undefined") {
+    const cachedDimensions = localStorage.getItem(cacheKey);
+    if (cachedDimensions) {
+      return JSON.parse(cachedDimensions);
+    }
+  }
+
+  // Fetch from API
+  const response = await fetch(`https://ucarecdn.com/${uuid}/-/json/`);
+  const data = await response.json();
+  const dimensions = { width: data.width, height: data.height };
+
+  // Store in in-memory cache
+  imageDimensionsCache[cacheKey] = dimensions;
+
+  // Store in localStorage (for client-side rendering)
+  if (typeof window !== "undefined") {
+    localStorage.setItem(cacheKey, JSON.stringify(dimensions));
+  }
+
+  return dimensions;
+}
+
+const { width: originalWidth, height: originalHeight } =
+  await fetchImageDimensions(uuid);
+const aspectRatio = originalWidth / originalHeight;
 
 function generateSrcSet(
   breakpoints: number[],
@@ -50,9 +91,9 @@ function parseTailwindSizes(sizes: string): string {
   };
 
   const parts = sizes.split(" ").reverse();
-  let result: string[] = [];
+  const result: string[] = [];
 
-  for (let part of parts) {
+  for (const part of parts) {
     const [breakpoint, size] = part.split(":");
     if (breakpoint && breakpointMap[breakpoint]) {
       result.push(`(min-width: ${breakpointMap[breakpoint]}px) ${size}`);
@@ -72,6 +113,13 @@ const cropParam = crop
   ? `-/crop/${largestBreakpoint}x${largestHeight}/center/`
   : `-/resize/${largestBreakpoint}x${largestHeight}/`;
 const largestImageUrl = `${baseUrl}${cropParam}-/format/auto/-/quality/smart/`;
+const largestBackgroundImageUrl = `${baseUrl}-/resize/${largestBreakpoint}x${largestHeight}/-/format/auto/-/quality/smart/`;
+
+function generateLowResSrc(uuid: string): string {
+  return `${baseUrl}-/resize/20x/-/format/auto/-/quality/lightest/`;
+}
+
+const lowResImageUrl = generateLowResSrc(uuid);
 ---
 
 {
@@ -79,7 +127,7 @@ const largestImageUrl = `${baseUrl}${cropParam}-/format/auto/-/quality/smart/`;
     <div
       class={`cs-background ${className}`}
       style={`
-      background-image: url('${largestImageUrl}');
+      background-image: url('${largestBackgroundImageUrl}');
       background-size: cover;
       background-position: center;
       aspect-ratio: ${aspectRatio};
@@ -90,7 +138,8 @@ const largestImageUrl = `${baseUrl}${cropParam}-/format/auto/-/quality/smart/`;
   ) : (
     <picture class="cs-picture">
       <img
-        src={largestImageUrl}
+        src={lowResImageUrl}
+        data-src={largestImageUrl}
         srcset={srcset}
         sizes={parsedSizes}
         alt={alt}
@@ -98,24 +147,47 @@ const largestImageUrl = `${baseUrl}${cropParam}-/format/auto/-/quality/smart/`;
         decoding="async"
         width={largestBreakpoint}
         height={largestHeight}
-        style={`aspect-ratio: ${aspectRatio};`}
-        class={`responsive-image ${className}`}
+        style={`aspect-ratio: ${aspectRatio}; object-fit: cover;`}
+        class={`responsive-image ${className} progressive-image`}
       />
     </picture>
   )
 }
 
 <script>
-  function updateImageSrc() {
-    const images = document.querySelectorAll("img.responsive-image");
+  function loadHighResImage(img: HTMLImageElement): void {
+    const highResSrc = img.getAttribute("data-src");
+    if (highResSrc) {
+      const highResImg = new Image();
+      highResImg.src = highResSrc;
+      highResImg.onload = () => {
+        img.src = highResSrc;
+        img.classList.add("loaded");
+      };
+      highResImg.onerror = () => {
+        console.error(`Failed to load high-res image: ${highResSrc}`);
+      };
+    } else {
+      console.error("High-res image source is null or undefined.");
+    }
+  }
+
+  function observeImages() {
+    const images = document.querySelectorAll("img.progressive-image");
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          if (img instanceof HTMLImageElement) {
+            loadHighResImage(img);
+            observer.unobserve(img);
+          }
+        }
+      });
+    });
+
     images.forEach((img) => {
-      if (img instanceof HTMLImageElement) {
-        const currentSrcset = img.srcset;
-        img.srcset = "";
-        setTimeout(() => {
-          img.srcset = currentSrcset;
-        }, 0);
-      }
+      observer.observe(img);
     });
   }
 
@@ -133,19 +205,38 @@ const largestImageUrl = `${baseUrl}${cropParam}-/format/auto/-/quality/smart/`;
     });
   }
 
-  // Update and log on load
-  window.addEventListener("load", () => {
-    updateImageSrc();
-    logImageInfo();
-  });
+  function debounce<T extends (...args: any[]) => void>(
+    func: T,
+    wait: number,
+  ): (...args: Parameters<T>) => void {
+    let timeout: ReturnType<typeof setTimeout>;
+    return function (...args: Parameters<T>): void {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
 
-  // Update and log on resize (debounced)
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      updateImageSrc();
-      logImageInfo();
-    }, 250);
-  });
+  function initImageLoading() {
+    observeImages();
+    logImageInfo();
+  }
+
+  const debouncedInitImageLoading = debounce(initImageLoading, 250);
+
+  // Initialize on load and navigation
+  window.addEventListener("load", initImageLoading);
+  document.addEventListener("astro:page-load", initImageLoading);
+
+  // Initialize on resize (debounced)
+  window.addEventListener("resize", debouncedInitImageLoading);
 </script>
+
+<style>
+  .progressive-image {
+    filter: blur(10px);
+    transition: filter 0.3s ease;
+  }
+  .progressive-image.loaded {
+    filter: blur(0);
+  }
+</style>
