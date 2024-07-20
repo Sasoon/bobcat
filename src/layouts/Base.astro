@@ -132,6 +132,29 @@ const { title, meta_title, description, image, noindex, canonical } =
     />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Preload fonts -->
+    <link
+      rel="preload"
+      href="/fonts/Montserrat-VariableFont_wght.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Roboto-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/go3v2.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+
     <!-- local fonts -->
     <style>
       @font-face {
@@ -139,6 +162,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
         font-weight: 100 900; /* Variable font weight range */
         font-style: normal;
+        font-display: swap; /* Added font-display property */
       }
 
       @font-face {
@@ -146,6 +170,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         src: url("/fonts/Roboto-Regular.ttf") format("truetype");
         font-weight: normal;
         font-style: normal;
+        font-display: swap; /* Added font-display property */
       }
 
       @font-face {
@@ -153,6 +178,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         src: url("/fonts/go3v2.ttf") format("truetype");
         font-weight: normal;
         font-style: normal;
+        font-display: swap; /* Added font-display property */
       }
 
       body {
