@@ -1,3 +1,55 @@
+<script>
+  (function () {
+    function initGradient() {
+      const gradient = document.getElementById("animated-gradient");
+      if (!gradient) return;
+
+      let hue = 0;
+
+      function updateGradient() {
+        hue = (hue + 1) % 360;
+        const hue1 = hue;
+        const hue2 = (hue + 120) % 360;
+        const hue3 = (hue + 240) % 360;
+
+        gradient.style.background = `linear-gradient(90deg, 
+          hsl(${hue1}, 100%, 60%),
+          hsl(${hue2}, 100%, 60%),
+          hsl(${hue3}, 100%, 60%)
+        )`;
+
+        requestAnimationFrame(updateGradient);
+      }
+
+      function pulsate() {
+        gradient.animate(
+          [
+            { transform: "scale(1)", opacity: 0.3 },
+            { transform: "scale(1.02)", opacity: 0.5 },
+          ],
+          {
+            duration: 2000,
+            iterations: Infinity,
+            direction: "alternate",
+            easing: "ease-in-out",
+          },
+        );
+      }
+
+      updateGradient();
+      pulsate();
+    }
+
+    // Run on initial load
+    initGradient();
+
+    // Run after view transitions
+    document.addEventListener("astro:after-swap", initGradient);
+
+    console.log("Gradient script loaded and executed");
+  })();
+</script>
+
 <section class="py-10 bg-midnight-teal sm:py-16 lg:py-24">
   <div class="max-w-5xl px-4 mx-auto sm:px-6 lg:px-8">
     <div
@@ -94,14 +146,14 @@
       <div class="relative z-10">
         <div class="absolute -inset-4 -z-10">
           <div
+            id="animated-gradient"
             class="w-full h-full mx-auto opacity-30 blur-lg filter"
-            style="background: linear-gradient(90deg, #44ff9a -0.55%, #44b0ff 22.86%, #8b44ff 48.36%, #ff6644 73.33%, #ebff70 99.34%)"
           >
           </div>
         </div>
         <div class="bg-white rounded-md">
           <div class="p-10 relative">
-            <p class="mt-4 text-6xl font-bold text-black inline-block">$350</p>
+            <p class="mt-4 text-6xl font-bold text-black inline-block">$299</p>
             <h3
               class="text-xs font-semibold tracking-widest inline-block text-purple-600 uppercase"
             >

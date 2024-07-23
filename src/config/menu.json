@@ -13,13 +13,13 @@
       "url": "/pricing"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    {
       "name": "FAQ",
       "url": "/faq"
-    }
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    }    
   ],
   "footer": [
     {

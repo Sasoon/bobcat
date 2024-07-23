@@ -1,5 +1,6 @@
 html {
   @apply text-base;
+    scroll-behavior: smooth;
 }
 
 h1,
@@ -8,7 +9,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-primary font-bold leading-tight text-dark;
+  @apply font-primary font-bold leading-tight text-midnight-teal
 }
 
 h1,

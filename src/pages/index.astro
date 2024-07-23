@@ -5,6 +5,7 @@ import WhoWeAre from "@/blocks/who-we-are.astro";
 import Features from "@/blocks/features.astro";
 import PricingTestimonial from "@/blocks/pricing-testimonial.astro";
 import Btn from "@/components/Btn.astro";
+import ResponsiveImage from "@/layouts/components/Image.astro";
 
 const homepage = await getEntryBySlug("homepage", "index");
 const { banner } = homepage.data;
@@ -36,20 +37,13 @@ const { banner } = homepage.data;
 </style>
 
 <Base>
-  <div class="relative bg-gray-50">
-    <div class="absolute bottom-0 right-0 overflow-hidden lg:inset-y-0">
-      <img
-        class="w-auto h-full"
-        src="https://d33wubrfki0l68.cloudfront.net/1e0fc04f38f5896d10ff66824a62e466839567f8/699b5/images/hero/3/background-pattern.png"
-        alt=""
-      />
-    </div>
-
+  <div class="relative">
     <section class="relative py-12 sm:py-16 lg:py-20">
-      <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div
           class="grid max-w-lg grid-cols-1 mx-auto lg:max-w-full lg:items-center lg:grid-cols-2 gap-y-12 lg:gap-x-8"
         >
+          <!-- <div class="parallax-bg"></div> -->
           <div>
             <div class="text-center lg:text-left">
               <h1
@@ -68,10 +62,9 @@ const { banner } = homepage.data;
           </div>
 
           <div>
-            <img
-              class="w-full"
-              src="https://ucarecdn.com/e545d52a-7b41-4f53-87fd-84fb98bc2996/-/preview/947x927/"
-              alt=""
+            <ResponsiveImage
+              uuid="e545d52a-7b41-4f53-87fd-84fb98bc2996"
+              alt="Homepage code img"
             />
           </div>
         </div>

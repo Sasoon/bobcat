@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import Image from "./Image.astro";
 import config from "@/config/config.json";
 const { src } = Astro.props;
 const {
@@ -15,36 +15,12 @@ const {
   logo_text: string;
   title: string;
 } = config.site;
+
+const logoUuid = src ? src : logo;
 ---
 
 <a href="/" class="navbar-brand block w-auto flex items-center relative">
-  <div id="logo-container" class="relative z-10">
-    {
-      src || logo ? (
-        <Image
-          width={logo_width.replace("px", "") * 2}
-          height={logo_height.replace("px", "") * 2}
-          src={src ? src : logo}
-          id="logo"
-          alt={title}
-          style={{
-            height: logo_height.replace("px", "") + "px",
-            width: logo_width.replace("px", "") + "px",
-          }}
-        />
-      ) : logo_text ? (
-        logo_text
-      ) : (
-        title
-      )
-    }
-  </div>
-  <span
-    class="ml-2 font-tertiary text-4xl font-bold transition-all duration-300 ease-in-out text-black text-shadow-black-outline"
-    id="logo-text"
-  >
-    BOBCAT
-  </span>
+  <img class="w-auto mx-auto h-16 lg:mx-0" src="/images/logo.png" alt="" />
 </a>
 
 <script>

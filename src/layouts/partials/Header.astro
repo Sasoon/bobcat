@@ -111,10 +111,10 @@ const { main }: { main: NavigationLink[] } = menu;
 
     function handleScroll() {
       if (window.scrollY > scrollThreshold) {
-        header.classList.add("py-0", "shadow-header");
+        header.classList.add("py-2", "shadow-header");
         header.classList.remove("py-4");
       } else {
-        header.classList.remove("py-0", "shadow-header");
+        header.classList.remove("py-2", "shadow-header");
         header.classList.add("py-4");
       }
     }

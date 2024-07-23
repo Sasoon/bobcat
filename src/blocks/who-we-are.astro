@@ -1,72 +1,27 @@
 ---
-
+import Image from "../layouts/components/Image.astro";
 ---
 
-<!-- ============================================ --><!--                 Side By Side                 --><!-- ============================================ -->
 <section id="sbsr-337">
   <div class="cs-container">
     <!-- Left Image Section -->
     <div class="cs-image-group">
       <!--Big Image-->
-      <picture class="cs-picture cs-picture1">
-        <source
-          media="(max-width: 600px)"
-          srcset="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/"
-        />
-        <source
-          media="(min-width: 601px)"
-          srcset="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/"
-        />
-        <img
-          loading="lazy"
-          decoding="async"
-          src="https://ucarecdn.com/6206c867-db5f-4c6a-926d-06268ac1ba2f/-/preview/826x814/"
-          alt="cleaning supplies"
-          width="672"
-          height="672"
-          aria-hidden="true"
-        />
-      </picture>
+      <div class="cs-picture cs-picture1">
+        <Image uuid="6206c867-db5f-4c6a-926d-06268ac1ba2f" alt="Coffee" />
+      </div>
       <!--Medium Image-->
-      <picture class="cs-picture cs-picture2">
-        <source
-          media="(max-width: 600px)"
-          srcset="https://ucarecdn.com/fcbc1635-3a72-428f-af65-44d264a4b978/-/preview/1000x666/"
+      <div class="cs-picture cs-picture2">
+        <Image
+          uuid="fcbc1635-3a72-428f-af65-44d264a4b978"
+          alt="Code"
+          forceSquare={true}
         />
-        <source
-          media="(min-width: 601px)"
-          srcset="https://ucarecdn.com/fcbc1635-3a72-428f-af65-44d264a4b978/-/preview/1000x666/"
-        />
-        <img
-          loading="lazy"
-          decoding="async"
-          src="https://ucarecdn.com/fcbc1635-3a72-428f-af65-44d264a4b978/-/preview/1000x666/"
-          alt="cleaning supplies"
-          width="300"
-          height="300"
-          aria-hidden="true"
-        />
-      </picture>
+      </div>
       <!--Small Image-->
-      <picture class="cs-picture cs-picture3">
-        <source
-          media="(max-width: 600px)"
-          srcset="https://ucarecdn.com/0f612ad5-def3-4a42-ad27-02e8ddd743aa/-/preview/999x999/"
-        />
-        <source
-          media="(min-width: 601px)"
-          srcset="https://ucarecdn.com/0f612ad5-def3-4a42-ad27-02e8ddd743aa/-/preview/999x999/"
-        />
-        <img
-          loading="lazy"
-          decoding="async"
-          src="https://ucarecdn.com/0f612ad5-def3-4a42-ad27-02e8ddd743aa/-/preview/999x999/"
-          alt="cleaner"
-          width="200"
-          height="200"
-          aria-hidden="true"
-        />
-      </picture>
+      <div class="cs-picture cs-picture3">
+        <Image uuid="0f612ad5-def3-4a42-ad27-02e8ddd743aa" alt="cleaner" />
+      </div>
     </div>
     <!-- Right Content Section-->
     <div class="text-center lg:text-left">
@@ -259,6 +214,7 @@
       /* flips it so its the original orientation, undoing the flip on the parent container */
       transform: scaleX(-1);
     }
+
     #sbsr-337 .cs-picture1 {
       width: 42em;
       height: 42em;

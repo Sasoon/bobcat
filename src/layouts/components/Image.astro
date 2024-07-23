@@ -7,6 +7,7 @@ interface Props {
   className?: string;
   crop?: boolean;
   isBackground?: boolean;
+  forceSquare?: boolean;
 }
 
 interface ImageDimensions {
@@ -22,6 +23,7 @@ const {
   className = "",
   crop = false,
   isBackground = false,
+  forceSquare = false,
 } = Astro.props as Props;
 
 const baseUrl = `https://ucarecdn.com/${uuid}/`;
@@ -69,7 +71,7 @@ async function fetchImageDimensions(uuid: string): Promise<ImageDimensions> {
 
 const { width: originalWidth, height: originalHeight } =
   await fetchImageDimensions(uuid);
-const aspectRatio = originalWidth / originalHeight;
+const aspectRatio = forceSquare ? 1 : originalWidth / originalHeight;
 
 function generateSrcSet(
   breakpoints: number[],
@@ -127,6 +129,7 @@ function generateLowResSrc(uuid: string): string {
 }
 
 const lowResImageUrl = generateLowResSrc(uuid);
+const highResImageUrl = largestImageUrl;
 ---
 
 {
@@ -136,6 +139,7 @@ const lowResImageUrl = generateLowResSrc(uuid);
       style={`
       background-image: url('${largestBackgroundImageUrl}');
       background-size: cover;
+      background-repeat: no-repeat;
       background-position: center;
       aspect-ratio: ${aspectRatio};
     `}
@@ -143,10 +147,16 @@ const lowResImageUrl = generateLowResSrc(uuid);
       aria-label={alt}
     />
   ) : (
-    <picture class="cs-picture">
+    <div class="image-container" style={`aspect-ratio: ${aspectRatio};`}>
       <img
         src={lowResImageUrl}
-        data-src={largestImageUrl}
+        alt={alt}
+        class={`low-res ${className}`}
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+      />
+      <img
+        src={highResImageUrl}
+        data-src={highResImageUrl}
         srcset={srcset}
         sizes={parsedSizes}
         alt={alt}
@@ -154,99 +164,69 @@ const lowResImageUrl = generateLowResSrc(uuid);
         decoding="async"
         width={largestBreakpoint}
         height={largestHeight}
-        style={`aspect-ratio: ${aspectRatio}; object-fit: cover;`}
-        class={`responsive-image ${className} progressive-image`}
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease-in-out;"
+        class={`high-res ${className}`}
       />
-    </picture>
+    </div>
   )
 }
 
+<style>
+  .image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  .low-res {
+    filter: blur(20px);
+    transition: opacity 0.3s ease-in;
+  }
+  .high-res {
+    transition: opacity 0.3s ease-in;
+  }
+</style>
+
 <script>
-  function loadHighResImage(img: HTMLImageElement): void {
-    const highResSrc = img.getAttribute("data-src");
-    if (highResSrc) {
-      const highResImg = new Image();
-      highResImg.src = highResSrc;
-      highResImg.onload = () => {
-        img.src = highResSrc;
-        img.classList.add("loaded");
-      };
-      highResImg.onerror = () => {
-        console.error(`Failed to load high-res image: ${highResSrc}`);
-      };
+  function loadHighResImage(container: HTMLElement): void {
+    const lowResImg = container.querySelector(".low-res") as HTMLImageElement;
+    const highResImg = container.querySelector(".high-res") as HTMLImageElement;
+
+    if (highResImg.complete) {
+      showHighResImage(lowResImg, highResImg);
     } else {
-      console.error("High-res image source is null or undefined.");
+      highResImg.onload = () => showHighResImage(lowResImg, highResImg);
     }
   }
 
+  function showHighResImage(
+    lowResImg: HTMLImageElement,
+    highResImg: HTMLImageElement,
+  ): void {
+    highResImg.style.opacity = "1";
+    lowResImg.style.opacity = "0";
+  }
+
   function observeImages() {
-    const images = document.querySelectorAll("img.progressive-image");
+    const imageContainers = document.querySelectorAll(".image-container");
     const observer = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img instanceof HTMLImageElement) {
-              loadHighResImage(img);
-              observer.unobserve(img);
-            }
+            loadHighResImage(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
           }
         });
       },
       { rootMargin: "50px" },
     );
 
-    images.forEach((img) => {
-      observer.observe(img);
+    imageContainers.forEach((container) => {
+      observer.observe(container);
     });
   }
 
-  function logImageInfo() {
-    const images = document.querySelectorAll("img.responsive-image");
-    images.forEach((img, index) => {
-      if (img instanceof HTMLImageElement) {
-        console.log(`Image ${index + 1}:`);
-        console.log("Viewport width:", window.innerWidth);
-        console.log("Image natural width:", img.naturalWidth);
-        console.log("Image displayed width:", img.offsetWidth);
-        console.log("Current image src:", img.currentSrc);
-        console.log("---");
-      }
-    });
-  }
+  // Run on initial load
+  observeImages();
 
-  function debounce<T extends (...args: any[]) => void>(
-    func: T,
-    wait: number,
-  ): (...args: Parameters<T>) => void {
-    let timeout: ReturnType<typeof setTimeout>;
-    return function (this: unknown, ...args: Parameters<T>): void {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  }
-
-  function initImageLoading() {
-    observeImages();
-    logImageInfo();
-  }
-
-  const debouncedInitImageLoading = debounce(initImageLoading, 250);
-
-  // Initialize on load and navigation
-  window.addEventListener("load", initImageLoading);
-  document.addEventListener("astro:page-load", initImageLoading);
-
-  // Initialize on resize (debounced)
-  window.addEventListener("resize", debouncedInitImageLoading);
+  // Run on subsequent navigations
+  document.addEventListener("astro:page-load", observeImages);
 </script>
-
-<style>
-  .progressive-image {
-    filter: blur(10px);
-    transition: filter 0.3s ease;
-  }
-  .progressive-image.loaded {
-    filter: blur(0);
-  }
-</style>

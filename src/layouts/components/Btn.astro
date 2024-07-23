@@ -4,15 +4,28 @@ interface Props {
   ariaLabel: string;
   text: string;
   className?: string;
+  isButton?: boolean;
 }
 
-const { href, ariaLabel, text, className = "" } = Astro.props;
+const { href, ariaLabel, text, className = "", isButton = false } = Astro.props;
 ---
 
-<a
-  href={href}
-  class={`${className} w-50 inline-flex items-center justify-center px-8 py-4 mt-8 font-semibold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:opacity-80 focus:opacity-80`}
-  aria-label={ariaLabel}
->
-  {text}
-</a>
+{
+  isButton ? (
+    <button
+      class={`${className} w-50 inline-flex items-center justify-center px-8 py-4 mt-8 font-semibold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:opacity-80 focus:opacity-80`}
+      aria-label={ariaLabel}
+      type="submit"
+    >
+      {text}
+    </button>
+  ) : (
+    <a
+      href={href}
+      class={`${className} w-50 inline-flex items-center justify-center px-8 py-4 mt-8 font-semibold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-fuchsia-600 to-blue-600 hover:opacity-80 focus:opacity-80`}
+      aria-label={ariaLabel}
+    >
+      {text}
+    </a>
+  )
+}

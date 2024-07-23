@@ -4,311 +4,87 @@ import ResponsiveImage from "@/layouts/components/Image.astro";
 ---
 
 <Base>
-  <!-- ============================================ -->
-  <!--            Side By Side Reverse              -->
-  <!-- ============================================ -->
-
-  <style>
-    /*-- -------------------------- -->
-<---   Side By Side Reverse     -->
-<--- -------------------------- -*/
-
-    /* Mobile - 360px */
-    @media only screen and (min-width: 0rem) {
-      #sbsr-298 {
-        padding: var(--sectionPadding);
-
-        .cs-container {
-          width: 100%;
-          /* changes to 1280px at desktop */
-          max-width: calc(550 / 16 * 1rem);
-          margin: auto;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-        }
-
-        .cs-content {
-          /* set text align to left if content needs to be left aligned */
-          text-align: center;
-          width: 100%;
-          max-width: calc(522 / 16 * 1rem);
-          display: flex;
-          flex-direction: column;
-          /* centers content horizontally, set to flex-start to left align */
-          align-items: center;
-        }
-
-        .cs-text {
-          margin-bottom: calc(16 / 16 * 1rem);
-          &:last-of-type {
-            margin-bottom: calc(32 / 16 * 1rem);
-          }
-        }
-
-        .cs-link {
-          font-size: calc(20 / 16 * 1rem);
-          font-weight: 700;
-          text-decoration: none;
-          color: var(--primary);
-        }
-
-        .cs-button-solid {
-          font-size: calc(16 / 16 * 1rem);
-          /* 46px - 56px */
-          line-height: clamp(2.875rem, 5.5vw, 3.5rem);
-          text-decoration: none;
-          font-weight: 700;
-          text-align: center;
-          margin: 0;
-          color: #fff;
-          min-width: calc(150 / 16 * 1rem);
-          padding: 0 calc(24 / 16 * 1rem);
-          background-color: var(--primary);
-          border-radius: calc(4 / 16 * 1rem);
-          display: inline-block;
-          position: relative;
-          z-index: 1;
-          /* prevents padding from adding to the width */
-          box-sizing: border-box;
-
-          &:before {
-            content: "";
-            position: absolute;
-            height: 100%;
-            width: 0%;
-            background: #000;
-            opacity: 1;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            border-radius: calc(4 / 16 * 1rem);
-            transition: width 0.3s;
-          }
-
-          &:hover {
-            &:before {
-              width: 100%;
-            }
-          }
-        }
-
-        .cs-image-group {
-          width: 100%;
-          max-width: calc(550 / 16 * 1rem);
-          /* 78px - 108px */
-          margin: 0 auto clamp(4.875rem, 16.5vw, 6.75rem);
-          position: relative;
-          display: block;
-          /* width divided by height */
-          aspect-ratio: 328/363;
-        }
-
-        .cs-picture {
-          /* big background image */
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            border-radius: calc(10 / 16 * 1rem);
-            object-fit: fill;
-          }
-        }
-
-        .cs-box {
-          /* 204px - 326px & changes at desktop */
-          width: clamp(12.75rem, 50vw, 20.375rem);
-          height: clamp(12.75rem, 50vw, 20.375rem);
-          border-radius: calc(10 / 16 * 1rem);
-          overflow: hidden;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
-          position: absolute;
-          left: 50%;
-          /* 38px - 60px - wrapped in a calc function to make clamp values negative */
-          bottom: calc(clamp(2.375rem, 7.9vw, 3.75rem) * -1);
-          transform: translateX(-50%);
-          z-index: 10;
-        }
-
-        .cs-box-picture {
-          /* Background image for cs-box */
-          width: 100%;
-          height: 100%;
-          background-color: #000;
-          border-radius: calc(10 / 16 * 1rem);
-          /* clips img corners and bg corners */
-          overflow: hidden;
-          position: absolute;
-          top: 0;
-          left: 0;
-          display: block;
-          z-index: -1;
-
-          img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0.65;
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-          }
-        }
-
-        .cs-number {
-          /* 75px - 100px */
-          font-size: clamp(4.6875rem, 8vw, 6.25rem);
-          line-height: 1em;
-          font-weight: 900;
-          margin-bottom: calc(8 / 16 * 1rem);
-          color: var(--headerColor);
-          /* creates the transparent clipping text */
-          mix-blend-mode: screen;
-          display: block;
-          z-index: 10;
-
-          &:before {
-            /* opaque white box - For mix-blend-mode to work, we need the 
-                   white box inside the .cs-number, so we use a pseudo element.
-                   We DON'T add a position to the cs-number so the pseudo positions
-                   itself relative to the .cs-box, which has position relative. This
-                   allows us to center to .cs-number pseudo inside the .cs-box */
-            content: "";
-            /* 184px - 294px & changes at desktop */
-            width: clamp(11.5rem, 45vw, 18.375rem);
-            height: clamp(11.5rem, 45vw, 18.375rem);
-            opacity: 1;
-            background-color: #fff;
-            border-radius: calc(7 / 16 * 1rem);
-            position: absolute;
-            display: block;
-            /* these next 3 properties are an old school way to center an absolutely
-                   positioned element inside a relative position parent */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-          }
-        }
-
-        .cs-desc {
-          /* 16px - 25px */
-          font-size: clamp(1rem, 4vw, 1.5625rem);
-          font-weight: 700;
-          line-height: 1.2em;
-          text-transform: lowercase;
-          text-align: center;
-          width: 80%;
-          color: var(--headerColor);
-          position: relative;
-          z-index: 10;
-        }
-      }
-    }
-
-    /* Desktop - 1024px */
-    @media only screen and (min-width: 64rem) {
-      #sbsr-298 {
-        /* aligns the button */
-        text-align: left;
-        .cs-container {
-          max-width: calc(1280 / 16 * 1rem);
-          /* set to horizontal arrangement */
-          flex-direction: row;
-          justify-content: space-between;
-          gap: calc(160 / 16 * 1rem);
-        }
-
-        .cs-content {
-          text-align: left;
-          align-items: flex-start;
-        }
-
-        .cs-image-group {
-          width: 40vw;
-          max-width: calc(521 / 16 * 1rem);
-          /* 520px - 672px */
-          height: clamp(32.5rem, 51.9vw, 42rem);
-          margin: 0;
-          /* sends it to the right in the 2nd position */
-          order: 2;
-        }
-
-        .cs-box {
-          /* 251px - 325px */
-          width: clamp(15.6875rem, 24.5vw, 20.3125rem);
-          height: clamp(15.6875rem, 24.5vw, 20.3125rem);
-          left: auto;
-          transform: none;
-          /* -52px to -102px */
-          left: calc(clamp(3.25rem, 5.5vw + 1.6rem, 6.375rem) * -1);
-          /* 62px - 80px */
-          bottom: clamp(3.875rem, 6.2vw, 5rem);
-        }
-
-        .cs-number {
-          &:before {
-            /* 226px - 293px */
-            width: clamp(14.125rem, 22.7vw, 18.3125rem);
-            height: clamp(14.125rem, 22.7vw, 18.3125rem);
-          }
-        }
-      }
-    }
-  </style>
-
-  <section id="sbsr-298">
-    <div class="cs-container">
-      <!-- Left Image Section -->
-      <div class="cs-image-group">
-        <!--Floating Box-->
-        <div class="cs-box">
-          <span class="cs-number">14</span>
-          <span class="cs-desc">years of practicing</span>
-          <!--Background image for cs-box-->
-          <div class="cs-box-picture opacity-50"></div>
-        </div>
-        <!--Big Background Image-->
-        <ResponsiveImage
-          uuid="56ab45b4-f203-4d01-bc37-2e5a66ac03c8"
-          alt="Sasoon Sarkisian"
-          isBackground={false}
-          crop={false}
-        />
-      </div>
-      <!-- Right Content Section-->
-      <div class="cs-content">
-        <span class="cs-topper">Who We Are</span>
-        <h2 class="cs-title">Good People, Great Lawyers</h2>
-        <p class="cs-text">
-          If you are facing criminal charges, it is crucial to have effective
-          representation immediately. Not only during trial, but also during the
-          pretrial phase as well. At Bernstein Attorneys, our London criminal
-          defense lawyer give your case our full time and attention, to ensure
-          you are treated fairly under the justice system.
-        </p>
-        <p class="cs-text">
-          Call to ask any question: <a class="cs-link" href="tel:"
-            >(555) 455-4555</a
+  <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+      <div class="text-center">
+        <div class="flex items-center justify-center">
+          <h2
+            class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl"
           >
-        </p>
-        <a
-          class="cs-button-solid"
-          aria-label="learn more about our programs"
-          href="">Learn More</a
-        >
+            About us
+          </h2>
+        </div>
+      </div>
+      <div class="flex md:flex-nowrap flex-wrap mb-32 mt-32 w-full gap-8">
+        <div class="w-full lg:w-1/2">
+          <ResponsiveImage
+            uuid="f85aa49e-547f-4aef-b916-7b7ba1af0710"
+            alt="Sasoon Sarkisian"
+          />
+        </div>
+        <div class="w-full lg:w-1/2">
+          <h3
+            class="text-midnight-teal font-bold font-heading max-w-xs lg:max-w-lg"
+          >
+            Hey, I'm Sas!
+          </h3>
+          <p class="mt-4 text-lg text-midnight-teal font-pj">
+            I'm a professional developer with a decade of experience working
+            with big organisations and gov departments. I've seen it all -
+            managing huge, monolithic codebases, building fresh projects from
+            the ground up (this is the fun part), sprucing up older sites,
+            building integrations, you name it I've done it. I've worked in
+            corporate, government and most recently NGOs, and still do so
+            fulltime to this day.
+          </p>
+          <p class="mt-4 text-lg text-midnight-teal font-pj">
+            Now I'm switching gears to help smaller businesses get online ASAP,
+            with 0 headache and $0 upfront. To that end, I've created Bobcat - a
+            full service web agency dedicated to giving smaller business the big
+            business treatment. This includes implementing industry standards
+            and best practices to bulletproof your site and ensure that it can
+            scale with your business. Optimizing all images and assets to cut
+            down load times. Even fixing obvious spelling errors and dead links
+            to missing pages. Imagine how much flak a big company would get if
+            they made these basic errors in their site. It might not have as big
+            an impact to your business, but I hold my clients to that standard
+            and treat them as if they are an enterprise company
+          </p>
+          <p class="mt-4 text-lg text-midnight-teal font-pj">
+            Today the web is polluted with low quality sites cobbled together by
+            cheap page builders and inexperienced developers.
+          </p>
+        </div>
+      </div>
+      <div
+        class="border border-gray-200 bg-white rounded-3xl flex flex-wrap mb-32"
+      >
+        <div class="w-full md:w-1/2 lg:w-1/4 py-8">
+          <div class="md:border-r border-gray-200 px-12">
+            <p class="text-gray-600 mb-2 text-center">Compromises</p>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">0</h2>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 lg:w-1/4 py-8">
+          <div class="lg:border-r border-gray-200 px-12">
+            <p class="text-gray-600 mb-2 text-center">Experience</p>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">
+              10 Years
+            </h2>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 lg:w-1/4 py-8">
+          <div class="md:border-r border-gray-200 px-12">
+            <p class="text-gray-600 mb-2 text-center">Team members</p>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">110</h2>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 lg:w-1/4 py-8">
+          <div class="px-12">
+            <p class="text-gray-600 mb-2 text-center">Nationalities</p>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">24</h2>
+          </div>
+        </div>
       </div>
     </div>
   </section>
