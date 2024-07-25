@@ -5,7 +5,7 @@ import ResponsiveImage from "@/layouts/components/Image.astro";
 
 <Base>
   <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
-    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-6xl">
       <div class="text-center">
         <div class="flex items-center justify-center">
           <h2
@@ -20,39 +20,26 @@ import ResponsiveImage from "@/layouts/components/Image.astro";
           <ResponsiveImage
             uuid="f85aa49e-547f-4aef-b916-7b7ba1af0710"
             alt="Sasoon Sarkisian"
+            fixed={true}
           />
         </div>
         <div class="w-full lg:w-1/2">
-          <h3
-            class="text-midnight-teal font-bold font-heading max-w-xs lg:max-w-lg"
-          >
-            Hey, I'm Sas!
-          </h3>
           <p class="mt-4 text-lg text-midnight-teal font-pj">
-            I'm a professional developer with a decade of experience working
-            with big organisations and gov departments. I've seen it all -
-            managing huge, monolithic codebases, building fresh projects from
-            the ground up (this is the fun part), sprucing up older sites,
-            building integrations, you name it I've done it. I've worked in
-            corporate, government and most recently NGOs, and still do so
-            fulltime to this day.
-          </p>
-          <p class="mt-4 text-lg text-midnight-teal font-pj">
-            Now I'm switching gears to help smaller businesses get online ASAP,
-            with 0 headache and $0 upfront. To that end, I've created Bobcat - a
-            full service web agency dedicated to giving smaller business the big
+            Hey, I'm Sas! I'm a professional developer with a decade of
+            experience working with big organisations and gov departments. Now
+            I'm switching gears to help smaller businesses get online ASAP, with
+            0 headache and $0 upfront. To that end, I've created Bobcat - a full
+            service web agency dedicated to giving smaller business the big
             business treatment. This includes implementing industry standards
             and best practices to bulletproof your site and ensure that it can
-            scale with your business. Optimizing all images and assets to cut
-            down load times. Even fixing obvious spelling errors and dead links
-            to missing pages. Imagine how much flak a big company would get if
-            they made these basic errors in their site. It might not have as big
-            an impact to your business, but I hold my clients to that standard
-            and treat them as if they are an enterprise company
-          </p>
-          <p class="mt-4 text-lg text-midnight-teal font-pj">
-            Today the web is polluted with low quality sites cobbled together by
-            cheap page builders and inexperienced developers.
+            scale with your business. Building clean integrations for
+            appointment bookings or mailing lists. Optimizing all images and
+            assets to cut down load times. Even fixing obvious spelling errors
+            and dead links to missing pages. Imagine how much flak a big company
+            would get if they made these basic errors in their site? I hold my
+            client sites to that standard and treat them as if they are an
+            enterprise company who can't afford mistakes, regardless of how big
+            they are.
           </p>
         </div>
       </div>
@@ -60,15 +47,18 @@ import ResponsiveImage from "@/layouts/components/Image.astro";
         class="border border-gray-200 bg-white rounded-3xl flex flex-wrap mb-32"
       >
         <div class="w-full md:w-1/2 lg:w-1/4 py-8">
-          <div class="md:border-r border-gray-200 px-12">
-            <p class="text-gray-600 mb-2 text-center">Compromises</p>
-            <h2 class="text-4xl lg:text-5xl font-semibold text-center">0</h2>
+          <div class="px-12">
+            <p class="text-gray-600 mb-2 text-center">Sites built</p>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">100+</h2>
           </div>
         </div>
+
         <div class="w-full md:w-1/2 lg:w-1/4 py-8">
           <div class="lg:border-r border-gray-200 px-12">
             <p class="text-gray-600 mb-2 text-center">Experience</p>
-            <h2 class="text-4xl lg:text-5xl font-semibold text-center">
+            <h2
+              class="text-4xl lg:text-5xl font-semibold text-center break-words"
+            >
               10 Years
             </h2>
           </div>
@@ -76,14 +66,59 @@ import ResponsiveImage from "@/layouts/components/Image.astro";
         <div class="w-full md:w-1/2 lg:w-1/4 py-8">
           <div class="md:border-r border-gray-200 px-12">
             <p class="text-gray-600 mb-2 text-center">Team members</p>
-            <h2 class="text-4xl lg:text-5xl font-semibold text-center">110</h2>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">1</h2>
           </div>
         </div>
         <div class="w-full md:w-1/2 lg:w-1/4 py-8">
-          <div class="px-12">
-            <p class="text-gray-600 mb-2 text-center">Nationalities</p>
-            <h2 class="text-4xl lg:text-5xl font-semibold text-center">24</h2>
+          <div class="md:border-r border-gray-200 px-12">
+            <p class="text-gray-600 mb-2 text-center">Compromises</p>
+            <h2 class="text-4xl lg:text-5xl font-semibold text-center">0</h2>
           </div>
+        </div>
+      </div>
+      <div
+        class="flex md:flex-nowrap flex-row-reverse flex-wrap mb-32 mt-32 w-full gap-8"
+      >
+        <div class="w-full lg:w-1/2">
+          <ResponsiveImage
+            uuid="85fd4067-7a84-4491-84e6-75791b2d2dd7"
+            alt="Man gesturing at screen showing web metrics"
+          />
+        </div>
+        <div class="w-full lg:w-1/2">
+          <p class="mt-4 text-lg text-midnight-teal font-pj">
+            Today's web is polluted with low quality websites cobbled together
+            by developers who should know better, and page builders that leave a
+            lot to be desired. Nothing comes for free, and the control offered
+            by page builders doesn't just cost you money - it comes at the
+            expense of your site's performance, search ranking, design choices
+            and accessibility. I address this problem by absorbing all technical
+            responsibility, leaving you to get busy doing what you do best. You
+            shouldn't be wasting time fiddling with a stubborn image carousel
+            that won't load properly on mobile. You identify the problems, I fix
+            them. This also reduces technical overhead, allowing me to build
+            sites that are blazing fast, secure and look fantastic.
+          </p>
+        </div>
+      </div>
+      <div class="flex md:flex-nowrap flex-wrap mb-32 mt-32 w-full gap-8">
+        <div class="w-full lg:w-1/2">
+          <ResponsiveImage
+            uuid="82c2f043-706c-4547-bbb2-6ddc0c92bc0e"
+            alt="Team gesturing at monitor"
+          />
+        </div>
+        <div class="w-full lg:w-1/2">
+          <p class="mt-4 text-lg text-midnight-teal font-pj">
+            With my $0 upfront $299/month model, I'm looking to build long
+            lasting relationships with business owners who understand that
+            websites are an investment and should be treated as such. You
+            wouldn't buy a brand new car and neglect to get it serviced and
+            washed regularly. The web is a dynamic landscape that changes
+            quickly, and my job is to give your site the consistent attention
+            required for it to perform 100% and look good doing it - all without
+            breaking the bank.
+          </p>
         </div>
       </div>
     </div>

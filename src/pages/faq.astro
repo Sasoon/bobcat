@@ -9,18 +9,13 @@ const { title, description, faqs } = entry.data;
 
 <Base title={title} description={description}>
   <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
-    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+    <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-6xl">
       <div class="max-w-2xl mx-auto text-center">
         <h2
           class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl"
         >
-          Frequently Asked Questions
+          Frequently asked questions
         </h2>
-        <p
-          class="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-600"
-        >
-          Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-        </p>
       </div>
 
       <div class="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16">
@@ -32,11 +27,11 @@ const { title, description, faqs } = entry.data;
             class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
           >
             <span class="flex text-lg font-semibold text-black">
-              How can I make payment using Paypal?
+              What's covered in the support package?
             </span>
 
             <svg
-              class="w-6 h-6 text-gray-400"
+              class="w-6 h-6 text-gray-400 transition-transform duration-200"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -50,14 +45,53 @@ const { title, description, faqs } = entry.data;
             </svg>
           </button>
 
-          <div class="px-4 pb-5 sm:px-6 sm:pb-6">
+          <div class="faq-content px-4 pb-5 sm:px-6 sm:pb-6">
             <p>
-              Amet minim mollit non deserunt ullamco est sit <a
-                href="#"
-                title=""
-                class="text-blue-600 transition-all duration-200 hover:underline"
-                >aliqua dolor</a
-              > do amet sint. Velit officia consequat duis enim velit mollit.
+              Guaranteed fix of any bugs or issues that are identified, 99% site
+              uptime, 6hr response time to any and all messages. Unlimited edits
+              to your content and basic modifications to the design. Includes
+              monthly maintenance work to keep the site running smoothly.I'm
+              also available as a consultant to suggest solutions to your
+              ongoing problems (such as automating repetitive tasks), and
+              helping you scale the site over time.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
+        >
+          <button
+            type="button"
+            class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+          >
+            <span class="flex text-lg font-semibold text-black">
+              Can I buy out the site?
+            </span>
+
+            <svg
+              class="w-6 h-6 text-gray-400 transition-transform duration-200"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div class="faq-content px-4 pb-5 sm:px-6 sm:pb-6">
+            <p>
+              I offer a CMS package which can be added on after your initial 6
+              month term for a one off fee of $750. This will reduce the monthly
+              fee to $120 for hosting, maintenance and 1 hour of support. A CMS
+              is a content management system that lets you modify your content
+              on your own. A training session with me is included for you to
+              learn the basics of using the CMS.
             </p>
           </div>
         </div>
@@ -75,7 +109,7 @@ const { title, description, faqs } = entry.data;
               </span>
 
               <svg
-                class="w-6 h-6 text-gray-400"
+                class="w-6 h-6 text-gray-400 transition-transform duration-200"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -89,14 +123,13 @@ const { title, description, faqs } = entry.data;
               </svg>
             </button>
 
-            <div class="px-4 pb-5 sm:px-6 sm:pb-6">
+            <div class="faq-content px-4 pb-5 sm:px-6 sm:pb-6">
               <p>
-                Amet minim mollit non deserunt ullamco est sit <a
-                  href="#"
-                  title=""
-                  class="text-blue-600 transition-all duration-200 hover:underline"
-                  >aliqua dolor</a
-                > do amet sint. Velit officia consequat duis enim velit mollit.
+                Yes, after the minimum 6 month term you can cancel the plan at
+                any time. After cancellation I will start taking the site down
+                gracefully, allowing you to export any content if you wish to do
+                so. You own your content and domain name, while the code remains
+                my property.
               </p>
             </div>
           </div>
@@ -105,16 +138,55 @@ const { title, description, faqs } = entry.data;
         <div
           class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
         >
+          <div class="">
+            <button
+              type="button"
+              class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+            >
+              <span class="flex text-lg font-semibold text-black">
+                I need to add additional features to my site - are they included
+                in the plan?
+              </span>
+
+              <svg
+                class="w-6 h-6 text-gray-400 transition-transform duration-200"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <div class="faq-content px-4 pb-5 sm:px-6 sm:pb-6">
+              <p>
+                Generally all features (work that adds new functionality that
+                didn't exist before) are billable work that I can quote you for.
+                An example of a billable feature would be a mailing list or a
+                blog. Definitely get in touch if you need to build upon your
+                site and we can work something out.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
+        >
           <button
             type="button"
             class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
           >
             <span class="flex text-lg font-semibold text-black">
-              How can I reach to support?
+              How can I reach you?
             </span>
 
             <svg
-              class="w-6 h-6 text-gray-400"
+              class="w-6 h-6 text-gray-400 transition-transform duration-200"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -128,14 +200,48 @@ const { title, description, faqs } = entry.data;
             </svg>
           </button>
 
-          <div class="px-4 pb-5 sm:px-6 sm:pb-6">
+          <div class="faq-content px-4 pb-5 sm:px-6 sm:pb-6">
             <p>
-              Amet minim mollit non deserunt ullamco est sit <a
-                href="#"
-                title=""
-                class="text-blue-600 transition-all duration-200 hover:underline"
-                >TEST
-              </a> do amet sint. Velit officia consequat duis enim velit mollit.
+              My phone number is 0433315519 and my email is hello@bobcat.dev. I
+              will do my best to make myself available for calls and in person
+              visits if required, and all correspondence will be addressed on
+              the same day.
+            </p>
+          </div>
+        </div>
+        <div
+          class="transition-all duration-200 bg-white border border-gray-200 cursor-pointer hover:bg-gray-50"
+        >
+          <button
+            type="button"
+            class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+          >
+            <span class="flex text-lg font-semibold text-black">
+              Can I pay lump sum instead of monthly?
+            </span>
+
+            <svg
+              class="w-6 h-6 text-gray-400 transition-transform duration-200"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div class="faq-content px-4 pb-5 sm:px-6 sm:pb-6">
+            <p>
+              If you don't anticipate that you'll need much support and want to
+              pay upfront to lower your monthly costs, that can be arranged.
+              Lump sum costing starts at $3,500 (half upfront, half upon
+              completion of the site) and $50/monthly for hosting and
+              maintenance. Support is available on demand at $120/hr.
             </p>
           </div>
         </div>
@@ -143,10 +249,10 @@ const { title, description, faqs } = entry.data;
 
       <p class="text-center text-gray-600 textbase mt-9">
         Didn't find the answer you are looking for? <a
-          href="#"
+          href="/contact"
           title=""
-          class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
-          >Contact our support</a
+          class="font-medium text-purple-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline"
+          >Contact me directly</a
         >
       </p>
     </div>
@@ -160,10 +266,7 @@ const { title, description, faqs } = entry.data;
     overflow: hidden;
     padding-top: 0;
     padding-bottom: 0;
-    transition:
-      height 0.3s ease-out,
-      opacity 0.3s ease-out,
-      padding 0.3s ease-out;
+    transition: all 0.3s ease-in-out;
   }
   .faq-content.active {
     opacity: 1;
@@ -178,11 +281,14 @@ const { title, description, faqs } = entry.data;
 
     faqItems.forEach((item) => {
       const button = item.querySelector("button");
-      const content = item.querySelector('div[class^="px-4"]');
-      const svg = button.querySelector("svg");
+      const content = item.querySelector(".faq-content");
+      const svg = item.querySelector("svg");
 
-      if (content) {
-        content.classList.add("faq-content");
+      if (content && svg) {
+        // Ensure content starts closed
+        content.style.height = "0px";
+        content.style.paddingTop = "0px";
+        content.style.paddingBottom = "0px";
 
         button.addEventListener("click", () => {
           const isActive = content.classList.contains("active");
@@ -191,12 +297,15 @@ const { title, description, faqs } = entry.data;
           faqItems.forEach((otherItem) => {
             if (otherItem !== item) {
               const otherContent = otherItem.querySelector(".faq-content");
-              otherContent.style.height = "0px";
-              otherContent.style.paddingTop = "0px";
-              otherContent.style.paddingBottom = "0px";
-              otherContent.classList.remove("active");
-              otherItem.querySelector("svg").classList.remove("rotate-180");
-              otherItem.classList.remove("shadow-lg");
+              const otherSvg = otherItem.querySelector("svg");
+              if (otherContent && otherContent.classList.contains("active")) {
+                otherContent.style.height = "0px";
+                otherContent.style.paddingTop = "0px";
+                otherContent.style.paddingBottom = "0px";
+                otherContent.classList.remove("active");
+                otherSvg.style.transform = "rotate(0deg)";
+                otherItem.classList.remove("shadow-lg");
+              }
             }
           });
 
@@ -209,22 +318,19 @@ const { title, description, faqs } = entry.data;
             content.style.height = `${contentHeight + paddingTop + paddingBottom}px`;
             content.style.paddingTop = `${paddingTop}px`;
             content.style.paddingBottom = `${paddingBottom}px`;
+            svg.style.transform = "rotate(180deg)";
           } else {
             content.classList.remove("active");
             content.style.height = "0px";
             content.style.paddingTop = "0px";
             content.style.paddingBottom = "0px";
+            svg.style.transform = "rotate(0deg)";
           }
-          svg.classList.toggle("rotate-180");
           item.classList.toggle("shadow-lg");
         });
       }
     });
   }
 
-  // Run initialization when the DOM content is loaded
-  document.addEventListener("DOMContentLoaded", initializeFAQ);
-
-  // For Astro's view transitions
   document.addEventListener("astro:page-load", initializeFAQ);
 </script>

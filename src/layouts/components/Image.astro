@@ -28,45 +28,15 @@ const {
 
 const baseUrl = `https://ucarecdn.com/${uuid}/`;
 
-const imageDimensionsCache: { [key: string]: ImageDimensions } = {};
-
 import imageDimensions from "./imageDimensions.json";
 
 async function fetchImageDimensions(uuid: string): Promise<ImageDimensions> {
-  const cacheKey = `image-dimensions-${uuid}`;
-
   // Check pre-fetched dimensions
   if (imageDimensions[uuid]) {
     return imageDimensions[uuid];
+  } else {
+    console.log("no img dimension");
   }
-
-  // Check in-memory cache (for server-side rendering)
-  if (imageDimensionsCache[cacheKey]) {
-    return imageDimensionsCache[cacheKey];
-  }
-
-  // Check localStorage (for client-side rendering)
-  if (typeof window !== "undefined") {
-    const cachedDimensions = localStorage.getItem(cacheKey);
-    if (cachedDimensions) {
-      return JSON.parse(cachedDimensions);
-    }
-  }
-
-  // Fetch from API
-  const response = await fetch(`https://ucarecdn.com/${uuid}/-/json/`);
-  const data = await response.json();
-  const dimensions = { width: data.width, height: data.height };
-
-  // Store in in-memory cache
-  imageDimensionsCache[cacheKey] = dimensions;
-
-  // Store in localStorage (for client-side rendering)
-  if (typeof window !== "undefined") {
-    localStorage.setItem(cacheKey, JSON.stringify(dimensions));
-  }
-
-  return dimensions;
 }
 
 const { width: originalWidth, height: originalHeight } =
@@ -160,7 +130,7 @@ const highResImageUrl = largestImageUrl;
         srcset={srcset}
         sizes={parsedSizes}
         alt={alt}
-        loading="eager"
+        loading="lazy"
         decoding="async"
         width={largestBreakpoint}
         height={largestHeight}
